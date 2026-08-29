@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    android:width="320dp"
+    android:height="180dp"
+    android:viewportWidth="320"
+    android:viewportHeight="180">
+
+    <!-- Deep Carbon Background with Diagonal Shimmer -->
+    <path
+        android:pathData="M0,0h320v180h-320z"
+        android:fillColor="#120A21" />
+
+    <!-- Ambient High-End Glowing Gradients -->
+    <path
+        android:pathData="M0,0h320v180h-320z">
+        <aapt:attr name="android:fillColor">
+            <gradient
+                android:startX="0"
+                android:startY="0"
+                android:endX="320"
+                android:endY="180"
+                android:type="linear">
+                <item android:offset="0.0" android:color="#50381E72"/>
+                <item android:offset="0.4" android:color="#25123A"/>
+                <item android:offset="0.8" android:color="#200B2B"/>
+                <item android:offset="1.0" android:color="#45071221"/>
+            </gradient>
+        </aapt:attr>
+    </path>
+
+    <!-- Subtle Premium Cyber Grid lines -->
+    <path
+        android:pathData="M0,20h320 M0,40h320 M0,60h320 M0,80h320 M0,100h320 M0,120h320 M0,140h320 M0,160h320 M32,0v180 M64,0v180 M96,0v180 M128,0v180 M160,0v180 M192,0v180 M224,0v180 M256,0v180 M288,0v180"
+        android:strokeColor="#1ED0BCFF"
+        android:strokeWidth="0.8" />
+
+    <!-- Outer Concentric Orbiting HUD Rings -->
+    <path
+        android:pathData="M20,90 A55,55 0 1,0 130,90 A55,55 0 1,0 20,90"
+        android:strokeColor="#25D0BCFF"
+        android:strokeWidth="1.5" />
+    <path
+        android:pathData="M30,90 A45,45 0 0,1 120,90"
+        android:strokeColor="#4ADE80"
+        android:strokeWidth="3"
+        android:strokeLineCap="round" />
+    <path
+        android:pathData="M35,90 A40,40 0 1,0 115,90 A40,40 0 1,0 35,90"
+        android:strokeColor="#1F1A24"
+        android:strokeWidth="6" />
+
+    <!-- Gamepad Controller Icon Left (Detailed) -->
+    <!-- Controller Body -->
+    <path
+        android:pathData="M52,80 C52,73 57,68 65,68 L85,68 C93,68 98,73 98,80 L100,95 C101,102 95,108 88,108 C83,108 80,104 78,98 L77,96 L75,98 C73,104 70,108 65,108 C58,108 52,102 53,95 Z"
+        android:fillColor="#15101F"
+        android:strokeColor="#D0BCFF"
+        android:strokeWidth="2.5"
+        android:strokeLineJoin="round" />
+
+    <!-- Controller D-Pad -->
+    <path
+        android:pathData="M61,82 v10 M56,87 h10"
+        android:strokeColor="#4ADE80"
+        android:strokeWidth="2.5"
+        android:strokeLineCap="round" />
+
+    <!-- Controller Action Buttons -->
+    <path
+        android:pathData="M88,81 a1.5,1.5 0 1,0 0.1,0 Z"
+        android:fillColor="#D0BCFF" />
+    <path
+        android:pathData="M83,86 a1.5,1.5 0 1,0 0.1,0 Z"
+        android:fillColor="#D0BCFF" />
+    <path
+        android:pathData="M93,86 a1.5,1.5 0 1,0 0.1,0 Z"
+        android:fillColor="#D0BCFF" />
+    <path
+        android:pathData="M88,91 a1.5,1.5 0 1,0 0.1,0 Z"
+        android:fillColor="#D0BCFF" />
+
+    <!-- Center Speed Lightning Core -->
+    <path
+        android:pathData="M76,80 L72,86 L76,86 L74,92"
+        android:strokeColor="#4ADE80"
+        android:strokeWidth="2"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round" />
+
+    <!-- Telemetry Waves on the Right -->
+    <path
+        android:pathData="M150,130 L170,130 L180,110 L190,145 L200,95 L210,135 L220,120 L230,130 L300,130"
+        android:strokeColor="#404ADE80"
+        android:strokeWidth="2.5"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round" />
+    <path
+        android:pathData="M150,140 L175,140 L185,130 L195,150 L205,125 L215,145 L225,135 L300,140"
+        android:strokeColor="#30D0BCFF"
+        android:strokeWidth="2"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round" />
+
+    <!-- Top Glow Header Bar -->
+    <path
+        android:pathData="M150,25 L300,25"
+        android:strokeColor="#204ADE80"
+        android:strokeWidth="3"
+        android:strokeLineCap="round" />
+
+    <!-- High-Performance Console Labels (Badges) -->
+    <path
+        android:pathData="M150,44 h75 a4,4 0 0,1 4,4 v18 a4,4 0 0,1 -4,4 h-75 a4,4 0 0,1 -4,-4 v-18 a4,4 0 0,1 4,-4 z"
+        android:fillColor="#31105D"
+        android:strokeColor="#D0BCFF"
+        android:strokeWidth="1.5" />
+    <path
+        android:pathData="M235,44 h65 a4,4 0 0,1 4,4 v18 a4,4 0 0,1 -4,4 h-65 a4,4 0 0,1 -4,-4 v-18 a4,4 0 0,1 4,-4 z"
+        android:fillColor="#003314"
+        android:strokeColor="#4ADE80"
+        android:strokeWidth="1.5" />
+
+    <!-- Stylish Bullet Indicators inside Badges -->
+    <path
+        android:pathData="M158,53 a2.5,2.5 0 1,0 0.1,0 Z"
+        android:fillColor="#D0BCFF" />
+    <path
+        android:pathData="M243,53 a2.5,2.5 0 1,0 0.1,0 Z"
+        android:fillColor="#4ADE80" />
+
+    <!-- Side Cyber Accents & Technical Crosshairs -->
+    <path
+        android:pathData="M295,20 a15,15 0 0,1 15,15"
+        android:strokeColor="#4ADE80"
+        android:strokeWidth="2.5"
+        android:strokeLineCap="round" />
+    <path
+        android:pathData="M300,15 a20,20 0 0,1 20,20"
+        android:strokeColor="#40D0BCFF"
+        android:strokeWidth="2"
+        android:strokeLineCap="round" />
+
+</vector>

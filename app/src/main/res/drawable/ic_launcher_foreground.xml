@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    
+    <!-- Outer Premium Glowing HUD Ring -->
+    <path
+        android:pathData="M54,16 A38,38 0 1,1 16,54 A38,38 0 0,1 54,16"
+        android:strokeColor="#D0BCFF"
+        android:strokeWidth="3.5"
+        android:strokeLineCap="round"
+        android:strokeAlpha="0.85" />
+    <path
+        android:pathData="M54,22 A32,32 0 1,0 86,54"
+        android:strokeColor="#4ADE80"
+        android:strokeWidth="1.5"
+        android:strokeLineCap="round"
+        android:strokeAlpha="0.9" />
+
+    <!-- Crosshair HUD Ticks -->
+    <path
+        android:pathData="M54,10 v6 M54,92 v6 M10,54 h6 M92,54 h6"
+        android:strokeColor="#D0BCFF"
+        android:strokeWidth="2"
+        android:strokeLineCap="round"/>
+
+    <!-- Game Controller Main Body -->
+    <path
+        android:pathData="M34,44 C27,44 21,49 21,58 C21,69 26,78 33,78 C37,78 40,74 45,70 L63,70 C68,74 71,78 75,78 C82,78 87,69 87,58 C87,49 81,44 74,44 Z"
+        android:fillColor="#1F1A24"
+        android:strokeColor="#D0BCFF"
+        android:strokeWidth="3"
+        android:strokeLineJoin="round" />
+
+    <!-- Left Analog / D-Pad Star -->
+    <path
+        android:pathData="M33,53 v10 M28,58 h10"
+        android:strokeColor="#4ADE80"
+        android:strokeWidth="3"
+        android:strokeLineCap="round" />
+
+    <!-- Right Action Buttons Diamond (Vibrant Purple Glows) -->
+    <path
+        android:pathData="M75,51 a1.8,1.8 0 1,0 0.1,0 Z"
+        android:fillColor="#D0BCFF" />
+    <path
+        android:pathData="M70,56 a1.8,1.8 0 1,0 0.1,0 Z"
+        android:fillColor="#D0BCFF" />
+    <path
+        android:pathData="M80,56 a1.8,1.8 0 1,0 0.1,0 Z"
+        android:fillColor="#D0BCFF" />
+    <path
+        android:pathData="M75,61 a1.8,1.8 0 1,0 0.1,0 Z"
+        android:fillColor="#D0BCFF" />
+
+    <!-- Center Speed Lightning Core -->
+    <path
+        android:pathData="M56,49 L48,58 L53,58 L50,67 L60,56 L55,56 Z"
+        android:fillColor="#4ADE80" />
+</vector>
+

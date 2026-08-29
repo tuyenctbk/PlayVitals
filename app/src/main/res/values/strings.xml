@@ -1,0 +1,78 @@
+<resources>
+    <string name="app_name">PlayVitals</string>
+    
+    <!-- Navigation & Headers -->
+    <string name="nav_dashboard">DASHBOARD</string>
+    <string name="nav_game_detail">GAME DETAILS</string>
+    <string name="nav_session_report">SESSION REPORT</string>
+    <string name="nav_gfx_guide">GFX GUIDE</string>
+    <string name="nav_game_mode">GAME MODE</string>
+    <string name="nav_hud_settings">HUD SETTINGS</string>
+    <string name="nav_reflex_trainer">REFLEX TRAINER</string>
+    <string name="nav_manage_games">MANAGE GAMES</string>
+    <string name="nav_onboarding">ONBOARDING</string>
+    <string name="no_ads_tagline">NO ADS • 100% FREE • PRO ENGINE</string>
+
+    <!-- Dashboard & Telemetry -->
+    <string name="free_ram">Free RAM</string>
+    <string name="battery_temp">Battery Temp</string>
+    <string name="latency">Latency</string>
+    <string name="refresh_rate">Refresh Rate</string>
+    <string name="boost_now">BOOST NOW</string>
+    <string name="launch_game">LAUNCH GAME</string>
+    <string name="filter_all">All</string>
+    <string name="favorites">FAVORITES</string>
+    <string name="storage">Storage</string>
+    <string name="game_library">GAME LIBRARY</string>
+    <string name="add_games">ADD GAMES</string>
+    <string name="game_insights">GAME INSIGHTS</string>
+
+    <!-- HUD Settings -->
+    <string name="show_hud_playing">Show Game HUD while playing</string>
+    <string name="app_theme_mode">APP THEME &amp; SYSTEM MODE</string>
+    <string name="hud_visual_style">HUD VISUAL STYLE</string>
+    <string name="bg_opacity">BACKGROUND OPACITY</string>
+    <string name="eco_refresh_limiter">Auto Eco Refresh Rate Limiter</string>
+    <string name="cloud_sync_title">FIREBASE FIRESTORE CLOUD SYNC</string>
+    <string name="sync_now">SYNC NOW</string>
+    <string name="backup_cloud">BACKUP TO CLOUD</string>
+    <string name="restore_cloud">RESTORE FROM CLOUD</string>
+
+    <!-- GFX Guide -->
+    <string name="gfx_guide_title">GFX GUIDE &amp; HARDWARE TUNING</string>
+    <string name="gemini_advisor_title">GEMINI AI HARDWARE TUNING ADVISOR</string>
+    <string name="ai_analyze">AI ANALYZE</string>
+    <string name="run_check_again">RUN THE CHECK AGAIN</string>
+
+    <!-- Game Mode -->
+    <string name="game_mode_title">GAME MODE CONTROL CENTER</string>
+    <string name="clear_memory">Clear Memory on Launch</string>
+    <string name="do_not_disturb">Do Not Disturb</string>
+
+    <!-- Reflex Trainer -->
+    <string name="reflex_trainer_title">REFLEX TRAINER &amp; AIM DRILL</string>
+    <string name="tap_now">TAP NOW!</string>
+    <string name="start_drill">START DRILL</string>
+
+    <!-- Onboarding -->
+    <string name="onboarding_title_1">Live Telemetry &amp; Floating HUD</string>
+    <string name="onboarding_desc_1">Real-time FPS, Ping latency, RAM memory usage, and battery temperature overlay while playing games.</string>
+    <string name="onboarding_title_2">Pro Game Booster &amp; Focus Mode</string>
+    <string name="onboarding_desc_2">One-tap RAM cleanup, notification silencing, and background process optimization for maximum performance.</string>
+    <string name="onboarding_title_3">Gemini AI Hardware Advisor</string>
+    <string name="onboarding_desc_3">AI-powered analysis tailored to your exact GPU and CPU specs with intelligent graphic tuning recommendations.</string>
+    <string name="onboarding_title_4">Reflex Trainer &amp; Analytics</string>
+    <string name="onboarding_desc_4">Sharpen your gaming reaction speed and analyze long-term performance trends across all your games.</string>
+    <string name="onboarding_btn_next">NEXT</string>
+    <string name="onboarding_btn_skip">SKIP</string>
+    <string name="onboarding_btn_start">GET STARTED</string>
+
+    <!-- Rate & Share Dialog -->
+    <string name="rate_share_title">Enjoying PlayVitals?</string>
+    <string name="rate_share_subtitle">Support us with a rating or share the app with your gaming friends!</string>
+    <string name="rate_app_btn">RATE APP</string>
+    <string name="share_app_btn">SHARE APP</string>
+    <string name="remind_later">REMIND ME LATER</string>
+    <string name="never_ask_again">DON\'T ASK AGAIN</string>
+    <string name="share_app_message">Check out PlayVitals - The ultimate Android Game Booster with Live Telemetry, GFX Tuning &amp; Gemini AI Advisor!</string>
+</resources>
