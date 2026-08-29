@@ -25,7 +25,9 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
+import com.example.R
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.data.model.GameItem
@@ -298,14 +300,14 @@ fun DashboardScreen(
                         Spacer(modifier = Modifier.width(10.dp))
                         Column {
                             Text(
-                                text = "REFLEX SPEED LAB",
+                                text = stringResource(R.string.reflex_speed_lab),
                                 color = TextPrimary,
                                 fontSize = 12.sp,
                                 fontWeight = FontWeight.Bold,
                                 letterSpacing = 0.8.sp
                             )
                             Text(
-                                text = "Reaction time & target blitz drills",
+                                text = stringResource(R.string.reflex_speed_desc),
                                 color = TextSecondary,
                                 fontSize = 10.sp
                             )
@@ -314,7 +316,7 @@ fun DashboardScreen(
 
                     Row(verticalAlignment = Alignment.CenterVertically) {
                         Text(
-                            text = if (bestReactionMs != null) "$bestReactionMs MS" else "PLAY DRILL",
+                            text = if (bestReactionMs != null) "$bestReactionMs MS" else stringResource(R.string.play_drill),
                             color = StatusGreen,
                             fontSize = 11.sp,
                             fontWeight = FontWeight.Bold
@@ -546,7 +548,7 @@ fun DashboardScreen(
                             contentPadding = PaddingValues(horizontal = 12.dp, vertical = 4.dp),
                             modifier = Modifier.height(34.dp).tvFocusHighlight(shape = RoundedCornerShape(8.dp))
                         ) {
-                            Text("FINISH", fontSize = 11.sp, fontWeight = FontWeight.Bold)
+                            Text(stringResource(R.string.btn_finish), fontSize = 11.sp, fontWeight = FontWeight.Bold)
                         }
                     }
                 }
@@ -594,7 +596,7 @@ fun DashboardScreen(
             verticalAlignment = Alignment.CenterVertically
         ) {
             Text(
-                text = "MY GAMES",
+                text = stringResource(R.string.my_games),
                 color = AccentLavender,
                 fontSize = 13.sp,
                 fontWeight = FontWeight.Bold,
@@ -603,7 +605,7 @@ fun DashboardScreen(
 
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Text(
-                    text = "MANAGE",
+                    text = stringResource(R.string.manage),
                     color = TextPrimary,
                     fontSize = 11.sp,
                     fontWeight = FontWeight.Bold,
@@ -669,13 +671,13 @@ fun DashboardScreen(
                     )
                     Spacer(modifier = Modifier.height(8.dp))
                     Text(
-                        text = if (selectedFilterTag == "FAVORITES") "No favorite games yet." else "No games match tag '$selectedFilterTag'.",
+                        text = if (selectedFilterTag == "FAVORITES") stringResource(R.string.no_favorites_yet) else "No games match tag '$selectedFilterTag'.",
                         color = TextSecondary,
                         fontSize = 12.sp
                     )
                     Spacer(modifier = Modifier.height(6.dp))
                     Text(
-                        text = "Tap MANAGE to edit game tags or add games.",
+                        text = stringResource(R.string.tap_manage_hint),
                         color = AccentLavender,
                         fontSize = 11.sp,
                         fontWeight = FontWeight.Bold,

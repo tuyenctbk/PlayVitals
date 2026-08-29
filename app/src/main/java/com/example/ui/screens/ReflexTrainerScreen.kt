@@ -23,7 +23,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
+import com.example.R
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -75,7 +77,7 @@ fun ReflexTrainerScreen(
             }
             Spacer(modifier = Modifier.width(8.dp))
             Text(
-                text = "REFLEX TRAINER",
+                text = stringResource(R.string.reflex_trainer_title),
                 color = TextPrimary,
                 fontSize = 14.sp,
                 fontWeight = FontWeight.Bold,
@@ -96,13 +98,13 @@ fun ReflexTrainerScreen(
             horizontalArrangement = Arrangement.spacedBy(4.dp)
         ) {
             DrillTabButton(
-                title = "REACTION SPEED",
+                title = stringResource(R.string.reaction_speed),
                 isSelected = drillType == ReflexDrillType.REACTION_SPEED,
                 onClick = { viewModel.setReflexDrillType(ReflexDrillType.REACTION_SPEED) },
                 modifier = Modifier.weight(1f)
             )
             DrillTabButton(
-                title = "12 TARGETS BLITZ",
+                title = stringResource(R.string.targets_blitz_12),
                 isSelected = drillType == ReflexDrillType.TARGET_BLITZ,
                 onClick = { viewModel.setReflexDrillType(ReflexDrillType.TARGET_BLITZ) },
                 modifier = Modifier.weight(1f)
@@ -208,7 +210,7 @@ private fun ReactionSpeedDrillContent(
                         )
                         Spacer(modifier = Modifier.height(14.dp))
                         Text(
-                            text = "TAP TO START",
+                            text = stringResource(R.string.tap_to_start),
                             color = TextPrimary,
                             fontSize = 20.sp,
                             fontWeight = FontWeight.Black,
@@ -216,7 +218,7 @@ private fun ReactionSpeedDrillContent(
                         )
                         Spacer(modifier = Modifier.height(6.dp))
                         Text(
-                            text = "When screen turns GREEN, tap as fast as you can.",
+                            text = stringResource(R.string.reaction_instruction),
                             color = TextSecondary,
                             fontSize = 12.sp,
                             textAlign = TextAlign.Center
@@ -226,7 +228,7 @@ private fun ReactionSpeedDrillContent(
                 ReactionState.WAITING_FOR_GREEN -> {
                     Column(horizontalAlignment = Alignment.CenterHorizontally) {
                         Text(
-                            text = "WAIT FOR GREEN...",
+                            text = stringResource(R.string.wait_for_green),
                             color = Color.White,
                             fontSize = 22.sp,
                             fontWeight = FontWeight.Black,
@@ -234,7 +236,7 @@ private fun ReactionSpeedDrillContent(
                         )
                         Spacer(modifier = Modifier.height(6.dp))
                         Text(
-                            text = "Don't tap yet!",
+                            text = stringResource(R.string.dont_tap_yet),
                             color = Color(0xFFFFCDD2),
                             fontSize = 13.sp
                         )
@@ -243,7 +245,7 @@ private fun ReactionSpeedDrillContent(
                 ReactionState.READY_TAP_NOW -> {
                     Column(horizontalAlignment = Alignment.CenterHorizontally) {
                         Text(
-                            text = "TAP NOW!",
+                            text = stringResource(R.string.tap_now),
                             color = Color(0xFF003816),
                             fontSize = 32.sp,
                             fontWeight = FontWeight.Black,
@@ -254,14 +256,14 @@ private fun ReactionSpeedDrillContent(
                 ReactionState.EARLY_TAP -> {
                     Column(horizontalAlignment = Alignment.CenterHorizontally) {
                         Text(
-                            text = "TOO EARLY!",
+                            text = stringResource(R.string.too_early),
                             color = Color.White,
                             fontSize = 22.sp,
                             fontWeight = FontWeight.Black
                         )
                         Spacer(modifier = Modifier.height(6.dp))
                         Text(
-                            text = "You tapped before green. Tap to try again.",
+                            text = stringResource(R.string.tapped_before_green),
                             color = Color(0xFFFFCDD2),
                             fontSize = 12.sp
                         )
@@ -297,7 +299,7 @@ private fun ReactionSpeedDrillContent(
                                 .padding(horizontal = 12.dp, vertical = 6.dp)
                         ) {
                             Text(
-                                text = "Touch-to-Frame Input Latency: ~12 ms • Render Frame Sync: OK",
+                                text = stringResource(R.string.input_latency_note),
                                 color = TextSecondary,
                                 fontSize = 10.sp,
                                 fontWeight = FontWeight.Medium
@@ -305,7 +307,7 @@ private fun ReactionSpeedDrillContent(
                         }
                         Spacer(modifier = Modifier.height(14.dp))
                         Text(
-                            text = "Tap anywhere to try again",
+                            text = stringResource(R.string.tap_anywhere_try_again),
                             color = TextSecondary,
                             fontSize = 11.sp
                         )
@@ -339,7 +341,7 @@ private fun ReactionSpeedDrillContent(
                     )
                     Spacer(modifier = Modifier.width(8.dp))
                     Text(
-                        text = "PERSONAL BEST",
+                        text = stringResource(R.string.personal_best),
                         color = TextPrimary,
                         fontSize = 12.sp,
                         fontWeight = FontWeight.Bold
@@ -417,14 +419,14 @@ private fun TargetBlitzDrillContent(
                     )
                     Spacer(modifier = Modifier.height(12.dp))
                     Text(
-                        text = "12 TARGETS BLITZ",
+                        text = stringResource(R.string.targets_blitz_12),
                         color = TextPrimary,
                         fontSize = 18.sp,
                         fontWeight = FontWeight.Black
                     )
                     Spacer(modifier = Modifier.height(6.dp))
                     Text(
-                        text = "Hit 12 targets across the screen as fast as you can.",
+                        text = stringResource(R.string.targets_blitz_desc),
                         color = TextSecondary,
                         fontSize = 12.sp,
                         textAlign = TextAlign.Center
@@ -438,7 +440,7 @@ private fun TargetBlitzDrillContent(
                             .tvFocusHighlight(shape = RoundedCornerShape(8.dp))
                             .testTag("start_blitz_button")
                     ) {
-                        Text("START BLITZ", fontSize = 12.sp, fontWeight = FontWeight.Bold)
+                        Text(stringResource(R.string.btn_start_blitz), fontSize = 12.sp, fontWeight = FontWeight.Bold)
                     }
                 }
             } else if (finalScore != null && !isActive) {
@@ -449,7 +451,7 @@ private fun TargetBlitzDrillContent(
                     verticalArrangement = Arrangement.Center
                 ) {
                     Text(
-                        text = "DRILL COMPLETE!",
+                        text = stringResource(R.string.drill_complete),
                         color = StatusGreen,
                         fontSize = 20.sp,
                         fontWeight = FontWeight.Black
@@ -474,7 +476,7 @@ private fun TargetBlitzDrillContent(
                         shape = RoundedCornerShape(8.dp),
                         modifier = Modifier.tvFocusHighlight(shape = RoundedCornerShape(8.dp))
                     ) {
-                        Text("PLAY AGAIN", fontSize = 12.sp, fontWeight = FontWeight.Bold)
+                        Text(stringResource(R.string.btn_play_again), fontSize = 12.sp, fontWeight = FontWeight.Bold)
                     }
                 }
             } else {

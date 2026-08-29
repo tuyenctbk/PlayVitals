@@ -19,7 +19,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
+import com.example.R
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.data.model.GameItem
@@ -71,7 +73,7 @@ fun ManageGamesScreen(
                 }
                 Spacer(modifier = Modifier.width(8.dp))
                 Text(
-                    text = "MANAGE GAMES",
+                    text = stringResource(R.string.manage_games_title),
                     color = TextPrimary,
                     fontSize = 14.sp,
                     fontWeight = FontWeight.Bold,
@@ -121,7 +123,7 @@ fun ManageGamesScreen(
                     )
                     Spacer(modifier = Modifier.width(10.dp))
                     Text(
-                        text = "Scanning PackageManager for installed games...",
+                        text = stringResource(R.string.scanning_installed),
                         color = TextPrimary,
                         fontSize = 11.sp,
                         fontWeight = FontWeight.Bold
@@ -132,7 +134,7 @@ fun ManageGamesScreen(
         }
 
         Text(
-            text = "Apps that declare themselves as games are picked up automatically via PackageManager; anything else can be added by hand.",
+            text = stringResource(R.string.pm_apps_notice),
             color = TextSecondary,
             fontSize = 12.sp,
             lineHeight = 16.sp
@@ -144,7 +146,7 @@ fun ManageGamesScreen(
         OutlinedTextField(
             value = searchQuery,
             onValueChange = { searchQuery = it },
-            placeholder = { Text("Search installed games and apps...", color = TextSecondary, fontSize = 12.sp) },
+            placeholder = { Text(stringResource(R.string.placeholder_search_installed), color = TextSecondary, fontSize = 12.sp) },
             leadingIcon = {
                 Icon(imageVector = Icons.Default.Search, contentDescription = null, tint = TextSecondary)
             },

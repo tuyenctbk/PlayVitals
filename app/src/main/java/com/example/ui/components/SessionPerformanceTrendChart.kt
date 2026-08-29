@@ -19,7 +19,9 @@ import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.*
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.input.pointer.pointerInput
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
+import com.example.R
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.data.model.GameSession
@@ -81,14 +83,14 @@ fun SessionPerformanceTrendChart(
             ) {
                 Column {
                     Text(
-                        text = "PERFORMANCE TRENDS",
+                        text = stringResource(R.string.perf_trends),
                         color = TextPrimary,
                         fontSize = 12.sp,
                         fontWeight = FontWeight.Bold,
                         letterSpacing = 1.sp
                     )
                     Text(
-                        text = "RAM Usage & Battery Temperature history",
+                        text = stringResource(R.string.perf_trends_desc),
                         color = TextSecondary,
                         fontSize = 10.sp
                     )

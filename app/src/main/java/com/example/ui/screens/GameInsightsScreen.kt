@@ -19,6 +19,8 @@ import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.res.stringResource
+import com.example.R
 import com.example.data.model.GameItem
 import com.example.data.model.GameSession
 import com.example.system.LiveDeviceStats
@@ -150,7 +152,7 @@ fun GameInsightsScreen(
                                         .padding(top = 8.dp)
                                         .tvFocusHighlight(shape = RoundedCornerShape(8.dp))
                                 ) {
-                                    Text(text = "TRIM MEMORY", fontSize = 11.sp, fontWeight = FontWeight.Bold)
+                                    Text(text = stringResource(R.string.clear_memory), fontSize = 11.sp, fontWeight = FontWeight.Bold)
                                 }
                             }
                         )
@@ -218,7 +220,7 @@ fun GameInsightsScreen(
                                     .padding(top = 8.dp)
                                     .tvFocusHighlight(shape = RoundedCornerShape(8.dp))
                             ) {
-                                Text(text = "TRIM MEMORY", fontSize = 11.sp, fontWeight = FontWeight.Bold)
+                                Text(text = stringResource(R.string.clear_memory), fontSize = 11.sp, fontWeight = FontWeight.Bold)
                             }
                         }
                     )

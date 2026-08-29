@@ -20,7 +20,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
+import com.example.R
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.data.model.GameItem
@@ -84,7 +86,7 @@ fun GameDetailScreen(
                 }
                 Spacer(modifier = Modifier.width(8.dp))
                 Text(
-                    text = "GAME DETAIL",
+                    text = stringResource(R.string.game_detail_title),
                     color = TextPrimary,
                     fontSize = 14.sp,
                     fontWeight = FontWeight.Bold,
@@ -148,7 +150,7 @@ fun GameDetailScreen(
                             shape = RoundedCornerShape(10.dp)
                         ) {
                             Text(
-                                text = "PLAY",
+                                text = stringResource(R.string.play_btn),
                                 fontSize = 15.sp,
                                 fontWeight = FontWeight.Black,
                                 letterSpacing = 1.sp
@@ -173,7 +175,7 @@ fun GameDetailScreen(
                             ) {
                                 Column(modifier = Modifier.weight(1f).padding(end = 12.dp)) {
                                     Text(
-                                        text = "SHOW GAME HUD WHILE PLAYING",
+                                        text = stringResource(R.string.show_hud_while_playing),
                                         color = TextPrimary,
                                         fontSize = 11.sp,
                                         fontWeight = FontWeight.Bold,
@@ -181,7 +183,7 @@ fun GameDetailScreen(
                                     )
                                     Spacer(modifier = Modifier.height(4.dp))
                                     Text(
-                                        text = "A small floating panel appears over your game with live device readings.",
+                                        text = stringResource(R.string.hud_desc),
                                         color = TextSecondary,
                                         fontSize = 11.sp,
                                         lineHeight = 15.sp
@@ -204,7 +206,7 @@ fun GameDetailScreen(
 
                         // 6 Stats Grid
                         Text(
-                            text = "PLAY HISTORY STATS",
+                            text = stringResource(R.string.play_history_stats),
                             color = NeonGreen,
                             fontSize = 11.sp,
                             fontWeight = FontWeight.Bold,
@@ -216,17 +218,17 @@ fun GameDetailScreen(
                                 modifier = Modifier.fillMaxWidth(),
                                 horizontalArrangement = Arrangement.spacedBy(8.dp)
                             ) {
-                                HistoryStatCard("PLAYED", displayPlayed, Modifier.weight(1f))
-                                HistoryStatCard("SESSIONS", "${game.sessionCount.coerceAtLeast(gameSessions.size)}", Modifier.weight(1f))
-                                HistoryStatCard("MIN RAM", if (game.minRamRecorded > 0) "${game.minRamRecorded}%" else "46%", Modifier.weight(1f))
+                                HistoryStatCard(stringResource(R.string.played_label), displayPlayed, Modifier.weight(1f))
+                                HistoryStatCard(stringResource(R.string.sessions_label), "${game.sessionCount.coerceAtLeast(gameSessions.size)}", Modifier.weight(1f))
+                                HistoryStatCard(stringResource(R.string.min_ram_label), if (game.minRamRecorded > 0) "${game.minRamRecorded}%" else "46%", Modifier.weight(1f))
                             }
                             Row(
                                 modifier = Modifier.fillMaxWidth(),
                                 horizontalArrangement = Arrangement.spacedBy(8.dp)
                             ) {
-                                HistoryStatCard("PEAK TEMP", if (game.peakTempRecorded > 0f) String.format("%.0f°C", game.peakTempRecorded) else "25°C", Modifier.weight(1f))
-                                HistoryStatCard("LATENCY", if (game.avgLatencyRecorded > 0) "${game.avgLatencyRecorded}ms" else "367ms", Modifier.weight(1f))
-                                HistoryStatCard("REFRESH", "${game.screenRefreshRate}Hz", Modifier.weight(1f))
+                                HistoryStatCard(stringResource(R.string.peak_temp_label), if (game.peakTempRecorded > 0f) String.format("%.0f°C", game.peakTempRecorded) else "25°C", Modifier.weight(1f))
+                                HistoryStatCard(stringResource(R.string.latency_label), if (game.avgLatencyRecorded > 0) "${game.avgLatencyRecorded}ms" else "367ms", Modifier.weight(1f))
+                                HistoryStatCard(stringResource(R.string.refresh_label), "${game.screenRefreshRate}Hz", Modifier.weight(1f))
                             }
                         }
                     }
@@ -247,7 +249,7 @@ fun GameDetailScreen(
                         ) {
                             Column {
                                 Text(
-                                    text = "USER-DEFINED TAGS",
+                                    text = stringResource(R.string.user_defined_tags),
                                     color = AccentLavender,
                                     fontSize = 11.sp,
                                     fontWeight = FontWeight.Bold,
@@ -255,7 +257,7 @@ fun GameDetailScreen(
                                 )
                                 Spacer(modifier = Modifier.height(2.dp))
                                 Text(
-                                    text = "Tag this game for easy filtering on your launcher list.",
+                                    text = stringResource(R.string.tag_hint),
                                     color = TextSecondary,
                                     fontSize = 11.sp
                                 )
@@ -265,7 +267,7 @@ fun GameDetailScreen(
                                 // Current Active Tags
                                 if (game.tagList.isEmpty()) {
                                     Text(
-                                        text = "No tags added yet.",
+                                        text = stringResource(R.string.no_tags_yet),
                                         color = TextTertiary,
                                         fontSize = 11.sp
                                     )
@@ -312,7 +314,7 @@ fun GameDetailScreen(
 
                                 // Quick Tag Suggestion Chips
                                 Text(
-                                    text = "QUICK SUGGESTIONS:",
+                                    text = stringResource(R.string.quick_suggestions),
                                     color = TextTertiary,
                                     fontSize = 9.sp,
                                     fontWeight = FontWeight.Bold,
@@ -362,7 +364,7 @@ fun GameDetailScreen(
                                     OutlinedTextField(
                                         value = customTagInput,
                                         onValueChange = { customTagInput = it },
-                                        placeholder = { Text("Add custom...", fontSize = 11.sp, color = TextTertiary) },
+                                        placeholder = { Text(stringResource(R.string.placeholder_add_custom), fontSize = 11.sp, color = TextTertiary) },
                                         singleLine = true,
                                         colors = OutlinedTextFieldDefaults.colors(
                                             focusedBorderColor = AccentLavender,
@@ -398,7 +400,7 @@ fun GameDetailScreen(
                                     ) {
                                         Icon(imageVector = Icons.Default.Add, contentDescription = null, modifier = Modifier.size(14.dp))
                                         Spacer(modifier = Modifier.width(4.dp))
-                                        Text("ADD", fontSize = 11.sp, fontWeight = FontWeight.Bold)
+                                        Text(stringResource(R.string.btn_add), fontSize = 11.sp, fontWeight = FontWeight.Bold)
                                     }
                                 }
                             }
@@ -406,7 +408,7 @@ fun GameDetailScreen(
 
                         // Recent Sessions List
                         Text(
-                            text = "RECENT SESSIONS",
+                            text = stringResource(R.string.recent_sessions),
                             color = TextSecondary,
                             fontSize = 11.sp,
                             fontWeight = FontWeight.Bold,
@@ -703,7 +705,7 @@ fun GameDetailScreen(
                                 OutlinedTextField(
                                     value = customTagInput,
                                     onValueChange = { customTagInput = it },
-                                    placeholder = { Text("Add custom tag...", fontSize = 11.sp, color = TextTertiary) },
+                                    placeholder = { Text(stringResource(R.string.placeholder_add_custom_tag), fontSize = 11.sp, color = TextTertiary) },
                                     singleLine = true,
                                     colors = OutlinedTextFieldDefaults.colors(
                                         focusedBorderColor = AccentLavender,
@@ -739,7 +741,7 @@ fun GameDetailScreen(
                                 ) {
                                     Icon(imageVector = Icons.Default.Add, contentDescription = null, modifier = Modifier.size(16.dp))
                                     Spacer(modifier = Modifier.width(4.dp))
-                                    Text("ADD", fontSize = 11.sp, fontWeight = FontWeight.Bold)
+                                    Text(stringResource(R.string.btn_add), fontSize = 11.sp, fontWeight = FontWeight.Bold)
                                 }
                             }
                         }
@@ -747,7 +749,7 @@ fun GameDetailScreen(
 
                     // Play History Title
                     Text(
-                        text = "PLAY HISTORY",
+                        text = stringResource(R.string.play_history),
                         color = NeonGreen,
                         fontSize = 11.sp,
                         fontWeight = FontWeight.Bold,

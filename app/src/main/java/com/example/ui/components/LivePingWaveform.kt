@@ -18,7 +18,9 @@ import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.graphics.StrokeJoin
 import androidx.compose.ui.graphics.drawscope.Stroke
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
+import com.example.R
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.ui.theme.*
@@ -65,7 +67,7 @@ fun LivePingWaveform(
                     )
                     Spacer(modifier = Modifier.width(6.dp))
                     Text(
-                        text = "PING • LAST 2 MIN",
+                        text = stringResource(R.string.ping_last_2min),
                         color = TextSecondary,
                         fontSize = 11.sp,
                         fontWeight = FontWeight.Bold,

@@ -16,7 +16,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
+import com.example.R
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.system.LiveDeviceStats
@@ -216,7 +218,7 @@ fun GfxGuideScreen(
                                                 strokeWidth = 2.dp
                                             )
                                         } else {
-                                            Text("AI ANALYZE", fontSize = 10.sp, fontWeight = FontWeight.Bold)
+                                            Text(stringResource(R.string.btn_ai_analyze), fontSize = 10.sp, fontWeight = FontWeight.Bold)
                                         }
                                     }
                                 }
@@ -258,9 +260,9 @@ fun GfxGuideScreen(
                                     strokeWidth = 2.dp
                                 )
                                 Spacer(modifier = Modifier.width(8.dp))
-                                Text("ANALYZING HARDWARE...", fontSize = 12.sp, fontWeight = FontWeight.Bold)
+                                Text(stringResource(R.string.analyzing_hardware), fontSize = 12.sp, fontWeight = FontWeight.Bold)
                             } else {
-                                Text("RUN THE CHECK AGAIN", fontSize = 12.sp, fontWeight = FontWeight.Bold, letterSpacing = 1.sp)
+                                Text(stringResource(R.string.run_check_again), fontSize = 12.sp, fontWeight = FontWeight.Bold, letterSpacing = 1.sp)
                             }
                         }
                     }
@@ -368,7 +370,7 @@ fun GfxGuideScreen(
                                             strokeWidth = 2.dp
                                         )
                                     } else {
-                                        Text("AI ANALYZE", fontSize = 10.sp, fontWeight = FontWeight.Bold)
+                                        Text(stringResource(R.string.btn_ai_analyze), fontSize = 10.sp, fontWeight = FontWeight.Bold)
                                     }
                                 }
                             }
@@ -409,9 +411,9 @@ fun GfxGuideScreen(
                                 strokeWidth = 2.dp
                             )
                             Spacer(modifier = Modifier.width(8.dp))
-                            Text("ANALYZING HARDWARE...", fontSize = 12.sp, fontWeight = FontWeight.Bold)
+                            Text(stringResource(R.string.analyzing_hardware), fontSize = 12.sp, fontWeight = FontWeight.Bold)
                         } else {
-                            Text("RUN THE CHECK AGAIN", fontSize = 12.sp, fontWeight = FontWeight.Bold, letterSpacing = 1.sp)
+                            Text(stringResource(R.string.run_check_again), fontSize = 12.sp, fontWeight = FontWeight.Bold, letterSpacing = 1.sp)
                         }
                     }
                 }

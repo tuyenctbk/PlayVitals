@@ -25,7 +25,9 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
+import com.example.R
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.data.model.HudSettings
@@ -139,7 +141,7 @@ fun HudSettingsScreen(
                                 .height(32.dp)
                                 .tvFocusHighlight(shape = RoundedCornerShape(6.dp))
                         ) {
-                            Text("GRANT PERMISSION", fontSize = 10.sp, fontWeight = FontWeight.Bold)
+                            Text(stringResource(R.string.btn_grant_permission), fontSize = 10.sp, fontWeight = FontWeight.Bold)
                         }
                     }
                 }
@@ -648,7 +650,7 @@ fun HudSettingsScreen(
                                         strokeWidth = 2.dp
                                     )
                                 } else {
-                                    Text("SYNC NOW", fontSize = 10.sp, fontWeight = FontWeight.Bold)
+                                    Text(stringResource(R.string.sync_now), fontSize = 10.sp, fontWeight = FontWeight.Bold)
                                 }
                             }
                         }
@@ -668,7 +670,7 @@ fun HudSettingsScreen(
                         Spacer(modifier = Modifier.height(10.dp))
 
                         Text(
-                            text = "MANUAL ROOM DB BACKUP & RESTORE",
+                            text = stringResource(R.string.manual_room_sync),
                             color = TextPrimary,
                             fontSize = 10.sp,
                             fontWeight = FontWeight.Bold,
@@ -694,7 +696,7 @@ fun HudSettingsScreen(
                                     .tvFocusHighlight(shape = RoundedCornerShape(8.dp)),
                                 contentPadding = PaddingValues(0.dp)
                             ) {
-                                Text("BACKUP TO CLOUD", fontSize = 10.sp, fontWeight = FontWeight.Bold)
+                                Text(stringResource(R.string.backup_cloud), fontSize = 10.sp, fontWeight = FontWeight.Bold)
                             }
 
                             Button(
@@ -711,7 +713,7 @@ fun HudSettingsScreen(
                                     .tvFocusHighlight(shape = RoundedCornerShape(8.dp)),
                                 contentPadding = PaddingValues(0.dp)
                             ) {
-                                Text("RESTORE FROM CLOUD", fontSize = 10.sp, fontWeight = FontWeight.Bold)
+                                Text(stringResource(R.string.restore_cloud), fontSize = 10.sp, fontWeight = FontWeight.Bold)
                             }
                         }
                     }
@@ -721,7 +723,7 @@ fun HudSettingsScreen(
             val sectionLivePreview = @Composable {
                 Column {
                     Text(
-                        text = "LIVE HUD PREVIEW",
+                        text = stringResource(R.string.live_hud_preview),
                         color = TextSecondary,
                         fontSize = 10.sp,
                         fontWeight = FontWeight.Bold,

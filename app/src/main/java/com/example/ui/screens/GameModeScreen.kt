@@ -21,6 +21,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.res.stringResource
+import com.example.R
 import com.example.ui.theme.*
 import com.example.viewmodel.ActiveScreen
 import com.example.viewmodel.PlayVitalsViewModel
@@ -67,7 +69,7 @@ fun GameModeScreen(
                 }
                 Spacer(modifier = Modifier.width(8.dp))
                 Text(
-                    text = "GAME MODE",
+                    text = stringResource(R.string.game_mode_title),
                     color = TextPrimary,
                     fontSize = 14.sp,
                     fontWeight = FontWeight.Bold,
@@ -88,7 +90,7 @@ fun GameModeScreen(
                         horizontalAlignment = Alignment.CenterHorizontally
                     ) {
                         Text(
-                            text = if (gameModeState.isGameModeEnabled) "GAME MODE IS ON" else "GAME MODE IS OFF",
+                            text = if (gameModeState.isGameModeEnabled) stringResource(R.string.game_mode_on) else stringResource(R.string.game_mode_off),
                             color = if (gameModeState.isGameModeEnabled) NeonGreen else TextSecondary,
                             fontSize = 17.sp,
                             fontWeight = FontWeight.Black,
@@ -116,7 +118,7 @@ fun GameModeScreen(
                         // Releasing background processes status
                         Column(modifier = Modifier.fillMaxWidth()) {
                             Text(
-                                text = "RELEASING BACKGROUND PROCESSES",
+                                text = stringResource(R.string.releasing_bg_proc),
                                 color = TextSecondary,
                                 fontSize = 10.sp,
                                 fontWeight = FontWeight.Bold,
@@ -136,7 +138,7 @@ fun GameModeScreen(
 
                             // Switching notifications status
                             Text(
-                                text = "SWITCHING NOTIFICATIONS",
+                                text = stringResource(R.string.switching_notif),
                                 color = TextSecondary,
                                 fontSize = 10.sp,
                                 fontWeight = FontWeight.Bold,
@@ -146,7 +148,7 @@ fun GameModeScreen(
                             HorizontalDivider(color = NeonGreen, thickness = 2.dp)
                             Spacer(modifier = Modifier.height(6.dp))
                             Text(
-                                text = if (gameModeState.isGameModeEnabled && gameModeState.doNotDisturbEnabled) "Notifications silenced" else "Notifications active (normal mode)",
+                                text = if (gameModeState.isGameModeEnabled && gameModeState.doNotDisturbEnabled) stringResource(R.string.notif_silenced) else stringResource(R.string.notif_active),
                                 color = TextPrimary,
                                 fontSize = 12.sp,
                                 fontWeight = FontWeight.Medium
@@ -160,7 +162,7 @@ fun GameModeScreen(
                         verticalArrangement = Arrangement.spacedBy(12.dp)
                     ) {
                         Text(
-                            text = "WHILE GAME MODE IS ON",
+                            text = stringResource(R.string.while_game_mode_on),
                             color = NeonGreen,
                             fontSize = 11.sp,
                             fontWeight = FontWeight.Bold,
@@ -169,22 +171,22 @@ fun GameModeScreen(
 
                         // Settings Cards
                         GameModeToggleCard(
-                            title = "CLEAR MEMORY",
-                            description = "Asks Android to release background processes.",
+                            title = stringResource(R.string.clear_memory),
+                            description = stringResource(R.string.clear_memory_desc),
                             checked = gameModeState.clearMemoryEnabled,
                             onCheckedChange = { viewModel.toggleClearMemory(it) }
                         )
 
                         GameModeToggleCard(
-                            title = "DO NOT DISTURB",
-                            description = "Silences notifications so nothing interrupts your match.",
+                            title = stringResource(R.string.dnd),
+                            description = stringResource(R.string.dnd_desc),
                             checked = gameModeState.doNotDisturbEnabled,
                             onCheckedChange = { viewModel.toggleDoNotDisturb(it) }
                         )
 
                         GameModeToggleCard(
-                            title = "KEEP THE SCREEN AWAKE",
-                            description = "While the Game HUD is showing over a game, the screen will not time out.",
+                            title = stringResource(R.string.keep_awake),
+                            description = stringResource(R.string.keep_awake_desc),
                             checked = gameModeState.keepScreenAwakeEnabled,
                             onCheckedChange = { viewModel.toggleKeepScreenAwake(it) }
                         )
@@ -201,7 +203,7 @@ fun GameModeScreen(
                                 .padding(14.dp)
                         ) {
                             Text(
-                                text = "It does not make a game run faster. Android manages memory itself, so the amount freed is often small — you will see the real number below.",
+                                text = stringResource(R.string.game_mode_disclaimer),
                                 color = TextSecondary,
                                 fontSize = 11.sp,
                                 lineHeight = 16.sp
@@ -217,7 +219,7 @@ fun GameModeScreen(
                     modifier = Modifier.fillMaxWidth()
                 ) {
                     Text(
-                        text = if (gameModeState.isGameModeEnabled) "GAME MODE IS ON" else "GAME MODE IS OFF",
+                        text = if (gameModeState.isGameModeEnabled) stringResource(R.string.game_mode_on) else stringResource(R.string.game_mode_off),
                         color = if (gameModeState.isGameModeEnabled) NeonGreen else TextSecondary,
                         fontSize = 17.sp,
                         fontWeight = FontWeight.Black,
@@ -245,7 +247,7 @@ fun GameModeScreen(
 
                 // While Game Mode is on section
                 Text(
-                    text = "WHILE GAME MODE IS ON",
+                    text = stringResource(R.string.while_game_mode_on),
                     color = NeonGreen,
                     fontSize = 11.sp,
                     fontWeight = FontWeight.Bold,
@@ -258,24 +260,24 @@ fun GameModeScreen(
                 Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
                     // Clear Memory
                     GameModeToggleCard(
-                        title = "CLEAR MEMORY",
-                        description = "Asks Android to release background processes.",
+                        title = stringResource(R.string.clear_memory),
+                        description = stringResource(R.string.clear_memory_desc),
                         checked = gameModeState.clearMemoryEnabled,
                         onCheckedChange = { viewModel.toggleClearMemory(it) }
                     )
 
                     // Do Not Disturb
                     GameModeToggleCard(
-                        title = "DO NOT DISTURB",
-                        description = "Silences notifications so nothing interrupts your match.",
+                        title = stringResource(R.string.dnd),
+                        description = stringResource(R.string.dnd_desc),
                         checked = gameModeState.doNotDisturbEnabled,
                         onCheckedChange = { viewModel.toggleDoNotDisturb(it) }
                     )
 
                     // Keep Screen Awake
                     GameModeToggleCard(
-                        title = "KEEP THE SCREEN AWAKE",
-                        description = "While the Game HUD is showing over a game, the screen will not time out.",
+                        title = stringResource(R.string.keep_awake),
+                        description = stringResource(R.string.keep_awake_desc),
                         checked = gameModeState.keepScreenAwakeEnabled,
                         onCheckedChange = { viewModel.toggleKeepScreenAwake(it) }
                     )
@@ -293,7 +295,7 @@ fun GameModeScreen(
                         .padding(14.dp)
                 ) {
                     Text(
-                        text = "It does not make a game run faster. Android manages memory itself, so the amount freed is often small — you will see the real number below.",
+                        text = stringResource(R.string.game_mode_disclaimer),
                         color = TextSecondary,
                         fontSize = 11.sp,
                         lineHeight = 16.sp
@@ -304,7 +306,7 @@ fun GameModeScreen(
 
                 // Releasing background processes status
                 Text(
-                    text = "RELEASING BACKGROUND PROCESSES",
+                    text = stringResource(R.string.releasing_bg_proc),
                     color = TextSecondary,
                     fontSize = 10.sp,
                     fontWeight = FontWeight.Bold,
@@ -324,7 +326,7 @@ fun GameModeScreen(
 
                 // Switching notifications status
                 Text(
-                    text = "SWITCHING NOTIFICATIONS",
+                    text = stringResource(R.string.switching_notif),
                     color = TextSecondary,
                     fontSize = 10.sp,
                     fontWeight = FontWeight.Bold,
@@ -334,7 +336,7 @@ fun GameModeScreen(
                 HorizontalDivider(color = NeonGreen, thickness = 2.dp)
                 Spacer(modifier = Modifier.height(6.dp))
                 Text(
-                    text = if (gameModeState.isGameModeEnabled && gameModeState.doNotDisturbEnabled) "Notifications silenced" else "Notifications active (normal mode)",
+                    text = if (gameModeState.isGameModeEnabled && gameModeState.doNotDisturbEnabled) stringResource(R.string.notif_silenced) else stringResource(R.string.notif_active),
                     color = TextPrimary,
                     fontSize = 12.sp,
                     fontWeight = FontWeight.Medium

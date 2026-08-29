@@ -22,6 +22,8 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.material.icons.filled.FileDownload
 import androidx.compose.material.icons.filled.Share
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
+import com.example.R
 import com.example.data.model.GameSession
 import com.example.system.ExportReportHelper
 import com.example.ui.components.GameIconBadge
@@ -72,7 +74,7 @@ fun SessionReportScreen(
                 }
                 Spacer(modifier = Modifier.width(8.dp))
                 Text(
-                    text = "SESSION",
+                    text = stringResource(R.string.session_title),
                     color = TextPrimary,
                     fontSize = 14.sp,
                     fontWeight = FontWeight.Bold,
@@ -117,7 +119,7 @@ fun SessionReportScreen(
             val scoreSection = @Composable {
                 Column {
                     Text(
-                        text = "SESSION SCORES",
+                        text = stringResource(R.string.session_scores_title),
                         color = NeonGreen,
                         fontSize = 11.sp,
                         fontWeight = FontWeight.Bold,
@@ -134,15 +136,15 @@ fun SessionReportScreen(
                         ) {
                             ScoreCard(
                                 score = session.pingScore,
-                                title = "Ping stability",
-                                description = if (session.pingScore >= 70) "Ping stayed stable throughout." else "Ping jumped around during the session.",
+                                title = stringResource(R.string.ping_stability_title),
+                                description = if (session.pingScore >= 70) stringResource(R.string.ping_stable_desc) else stringResource(R.string.ping_unstable_desc),
                                 color = if (session.pingScore >= 70) NeonGreen else if (session.pingScore >= 40) WarningAmber else Color(0xFF8B949E),
                                 modifier = Modifier.weight(1f)
                             )
                             ScoreCard(
                                 score = session.memoryScore,
-                                title = "Memory",
-                                description = if (session.memoryScore >= 70) "Plenty of free memory throughout." else "RAM had heavy consumption.",
+                                title = stringResource(R.string.memory_title),
+                                description = if (session.memoryScore >= 70) stringResource(R.string.memory_good_desc) else stringResource(R.string.memory_heavy_desc),
                                 color = if (session.memoryScore >= 70) NeonGreen else WarningAmber,
                                 modifier = Modifier.weight(1f)
                             )
@@ -154,15 +156,15 @@ fun SessionReportScreen(
                         ) {
                             ScoreCard(
                                 score = session.tempScore,
-                                title = "Battery temp",
-                                description = if (session.tempScore >= 70) "The battery stayed cool." else "Battery warmed up under load.",
+                                title = stringResource(R.string.battery_temp_title),
+                                description = if (session.tempScore >= 70) stringResource(R.string.battery_temp_cool_desc) else stringResource(R.string.battery_temp_warm_desc),
                                 color = if (session.tempScore >= 70) NeonGreen else WarningAmber,
                                 modifier = Modifier.weight(1f)
                             )
                             ScoreCard(
                                 score = session.overallScore,
-                                title = "Overall",
-                                description = "Average of the scores above.",
+                                title = stringResource(R.string.overall_score_title),
+                                description = stringResource(R.string.overall_score_desc),
                                 color = if (session.overallScore >= 75) NeonGreen else if (session.overallScore >= 50) WarningAmber else CriticalRed,
                                 modifier = Modifier.weight(1f)
                             )
@@ -173,9 +175,9 @@ fun SessionReportScreen(
 
             val verdictSection = @Composable {
                 val verdictTitle = when {
-                    session.overallScore >= 80 -> "Optimal session"
-                    session.overallScore >= 60 -> "Mixed session"
-                    else -> "Heavy load session"
+                    session.overallScore >= 80 -> stringResource(R.string.optimal_session)
+                    session.overallScore >= 60 -> stringResource(R.string.mixed_session)
+                    else -> stringResource(R.string.heavy_load_session)
                 }
                 val verdictColor = if (session.overallScore >= 75) NeonGreen else WarningAmber
 
@@ -191,7 +193,7 @@ fun SessionReportScreen(
 
                     // What the readings say
                     Text(
-                        text = "WHAT THE READINGS SAY",
+                        text = stringResource(R.string.what_readings_say),
                         color = TextSecondary,
                         fontSize = 11.sp,
                         fontWeight = FontWeight.Bold,
@@ -255,7 +257,7 @@ fun SessionReportScreen(
                                 modifier = Modifier.size(16.dp)
                             )
                             Spacer(modifier = Modifier.width(6.dp))
-                            Text(text = "EXPORT PDF", fontSize = 11.sp, fontWeight = FontWeight.Bold)
+                            Text(text = stringResource(R.string.export_pdf), fontSize = 11.sp, fontWeight = FontWeight.Bold)
                         }
 
                         Button(
@@ -277,7 +279,7 @@ fun SessionReportScreen(
                                 modifier = Modifier.size(16.dp)
                             )
                             Spacer(modifier = Modifier.width(6.dp))
-                            Text(text = "EXPORT JSON", fontSize = 11.sp, fontWeight = FontWeight.Bold)
+                            Text(text = stringResource(R.string.export_json), fontSize = 11.sp, fontWeight = FontWeight.Bold)
                         }
                     }
 
@@ -294,7 +296,7 @@ fun SessionReportScreen(
                         shape = RoundedCornerShape(10.dp),
                         border = ButtonDefaults.outlinedButtonBorder.copy(brush = androidx.compose.ui.graphics.SolidColor(DarkBorder))
                     ) {
-                        Text(text = "DONE", fontSize = 13.sp, fontWeight = FontWeight.Bold, letterSpacing = 1.sp)
+                        Text(text = stringResource(R.string.btn_done), fontSize = 13.sp, fontWeight = FontWeight.Bold, letterSpacing = 1.sp)
                     }
                 }
             }
