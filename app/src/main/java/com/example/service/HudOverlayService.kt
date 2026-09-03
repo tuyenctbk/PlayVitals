@@ -50,8 +50,16 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.core.app.NotificationCompat
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.LifecycleRegistry
+import androidx.lifecycle.ViewModelStore
+import androidx.lifecycle.ViewModelStoreOwner
 import androidx.lifecycle.setViewTreeLifecycleOwner
 import androidx.lifecycle.setViewTreeViewModelStoreOwner
+import androidx.savedstate.SavedStateRegistry
+import androidx.savedstate.SavedStateRegistryController
+import androidx.savedstate.SavedStateRegistryOwner
 import androidx.savedstate.setViewTreeSavedStateRegistryOwner
 import com.example.MainActivity
 import com.example.R
@@ -76,6 +84,7 @@ class HudOverlayService : Service() {
 
     private var windowManager: WindowManager? = null
     private var overlayView: View? = null
+    private var serviceLifecycleOwner: ServiceLifecycleOwner? = null
     private val serviceScope = CoroutineScope(Dispatchers.Main + Job())
 
     private var deviceMonitor: DeviceMonitor? = null
@@ -216,7 +225,13 @@ class HudOverlayService : Service() {
             y = savedY
         }
 
+        val owner = ServiceLifecycleOwner().apply { onCreate() }
+        serviceLifecycleOwner = owner
+
         val composeView = ComposeView(this).apply {
+            setViewTreeLifecycleOwner(owner)
+            setViewTreeSavedStateRegistryOwner(owner)
+            setViewTreeViewModelStoreOwner(owner)
             setContent {
                 HudOverlayContent(
                     gameTitle = activeGameTitle,
@@ -230,6 +245,7 @@ class HudOverlayService : Service() {
                     peakTempC = _peakTempC.value,
                     isMinimized = _isMinimized.value,
                     isEcoLimiterActive = _isEcoLimiterActive.value,
+                    hudSettings = currentHudSettings,
                     onToggleMinimize = { _isMinimized.value = !_isMinimized.value },
                     onFinish = { finishAndRecordSession() },
                     onDrag = { dx, dy ->
@@ -247,13 +263,10 @@ class HudOverlayService : Service() {
             }
         }
 
-        // Dummy lifecycle owners for ComposeView in Service
-        val wrapper = FrameLayout(this)
-        wrapper.addView(composeView)
-        overlayView = wrapper
+        overlayView = composeView
 
         try {
-            windowManager?.addView(wrapper, layoutParams)
+            windowManager?.addView(composeView, layoutParams)
         } catch (e: Exception) {
             e.printStackTrace()
         }
@@ -344,6 +357,8 @@ class HudOverlayService : Service() {
     override fun onDestroy() {
         super.onDestroy()
         serviceScope.cancel()
+        serviceLifecycleOwner?.onDestroy()
+        serviceLifecycleOwner = null
         if (overlayView != null) {
             try {
                 windowManager?.removeView(overlayView)
@@ -360,6 +375,30 @@ class HudOverlayService : Service() {
         const val ACTION_STOP_HUD = "ACTION_STOP_HUD"
         const val EXTRA_GAME_PACKAGE = "EXTRA_GAME_PACKAGE"
         const val EXTRA_GAME_TITLE = "EXTRA_GAME_TITLE"
+    }
+}
+
+private class ServiceLifecycleOwner : LifecycleOwner, ViewModelStoreOwner, SavedStateRegistryOwner {
+    private val lifecycleRegistry = LifecycleRegistry(this)
+    private val savedStateRegistryController = SavedStateRegistryController.create(this)
+    private val store = ViewModelStore()
+
+    override val lifecycle: Lifecycle get() = lifecycleRegistry
+    override val viewModelStore: ViewModelStore get() = store
+    override val savedStateRegistry: SavedStateRegistry get() = savedStateRegistryController.savedStateRegistry
+
+    fun onCreate() {
+        savedStateRegistryController.performRestore(null)
+        lifecycleRegistry.handleLifecycleEvent(Lifecycle.Event.ON_CREATE)
+        lifecycleRegistry.handleLifecycleEvent(Lifecycle.Event.ON_START)
+        lifecycleRegistry.handleLifecycleEvent(Lifecycle.Event.ON_RESUME)
+    }
+
+    fun onDestroy() {
+        lifecycleRegistry.handleLifecycleEvent(Lifecycle.Event.ON_PAUSE)
+        lifecycleRegistry.handleLifecycleEvent(Lifecycle.Event.ON_STOP)
+        lifecycleRegistry.handleLifecycleEvent(Lifecycle.Event.ON_DESTROY)
+        store.clear()
     }
 }
 
@@ -431,7 +470,7 @@ fun HudOverlayContent(
                         )
                         Spacer(modifier = Modifier.width(6.dp))
                         Text(
-                            text = "BOOSTER+ HUD",
+                            text = "PLAYVITALS HUD",
                             color = Color.White,
                             fontSize = 11.sp,
                             fontWeight = FontWeight.Bold,

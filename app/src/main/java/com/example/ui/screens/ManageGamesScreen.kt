@@ -159,7 +159,7 @@ fun ManageGamesScreen(
                 unfocusedTextColor = TextPrimary
             ),
             shape = RoundedCornerShape(10.dp),
-            modifier = Modifier.fillMaxWidth().height(52.dp)
+            modifier = Modifier.fillMaxWidth().defaultMinSize(minHeight = 52.dp)
         )
 
         Spacer(modifier = Modifier.height(14.dp))
@@ -205,7 +205,7 @@ fun ManageGamesScreen(
                                 Spacer(modifier = Modifier.height(2.dp))
                                 Row(verticalAlignment = Alignment.CenterVertically) {
                                     Text(
-                                        text = if (game.isAutoDetected) "Auto-detected Game" else "Installed App",
+                                        text = if (game.isAutoDetected) stringResource(R.string.auto_detected_game) else stringResource(R.string.installed_app),
                                         color = if (game.isAutoDetected) NeonGreen else TextSecondary,
                                         fontSize = 10.sp,
                                         fontWeight = FontWeight.Medium

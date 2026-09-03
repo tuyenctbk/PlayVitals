@@ -5,30 +5,33 @@
     android:height="108dp"
     android:viewportWidth="108"
     android:viewportHeight="108">
+    <!-- Deep Cyber Gaming Gradient Canvas -->
     <path
         android:pathData="M0,0h108v108h-108z">
         <aapt:attr name="android:fillColor">
             <gradient
-                android:startX="0"
-                android:startY="0"
-                android:endX="108"
-                android:endY="108"
+                android:startX="12"
+                android:startY="12"
+                android:endX="96"
+                android:endY="96"
                 android:type="linear">
-                <item android:offset="0.0" android:color="#240733"/>
-                <item android:offset="0.5" android:color="#120A21"/>
-                <item android:offset="1.0" android:color="#071221"/>
+                <item android:offset="0.0" android:color="#1F0E3D"/>
+                <item android:offset="0.45" android:color="#120A24"/>
+                <item android:offset="1.0" android:color="#070914"/>
             </gradient>
         </aapt:attr>
     </path>
-    <!-- Subtle Neon Cyber Grid Accents -->
+
+    <!-- Subtle HUD Tech Grid Background Lines -->
     <path
-        android:pathData="M18,0v108 M36,0v108 M54,0v108 M72,0v108 M90,0v108 M0,18h108 M0,36h108 M0,54h108 M0,72h108 M0,90h108"
-        android:strokeColor="#25D0BCFF"
-        android:strokeWidth="0.8"/>
-    <!-- Diagonals to create premium tech look -->
+        android:pathData="M27,0v108 M54,0v108 M81,0v108 M0,27h108 M0,54h108 M0,81h108"
+        android:strokeColor="#20D0BCFF"
+        android:strokeWidth="0.75" />
+
+    <!-- Ambient Radial Glow in the Center -->
     <path
-        android:pathData="M0,0 L108,108 M108,0 L0,108"
-        android:strokeColor="#154ADE80"
-        android:strokeWidth="0.6"/>
+        android:pathData="M54,20 A34,34 0 1,0 54,88 A34,34 0 1,0 54,20"
+        android:strokeColor="#184ADE80"
+        android:strokeWidth="1.2" />
 </vector>
 

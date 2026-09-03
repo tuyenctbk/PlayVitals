@@ -363,7 +363,7 @@ fun DashboardScreen(
                         )
                     }
                     Text(
-                        text = "NO ADS • 100% FREE • PRO ENGINE",
+                        text = stringResource(R.string.no_ads_tagline),
                         color = AccentLavender,
                         fontSize = 10.sp,
                         fontWeight = FontWeight.Bold,

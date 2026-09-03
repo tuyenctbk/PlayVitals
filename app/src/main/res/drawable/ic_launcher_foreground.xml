@@ -4,60 +4,104 @@
     android:height="108dp"
     android:viewportWidth="108"
     android:viewportHeight="108">
-    
-    <!-- Outer Premium Glowing HUD Ring -->
+
+    <!-- Outer HUD Targeting Brackets (66dp safe-zone boundary) -->
+    <!-- Top-Left Bracket -->
     <path
-        android:pathData="M54,16 A38,38 0 1,1 16,54 A38,38 0 0,1 54,16"
+        android:pathData="M26,35 L26,26 L35,26"
         android:strokeColor="#D0BCFF"
-        android:strokeWidth="3.5"
+        android:strokeWidth="2.5"
         android:strokeLineCap="round"
-        android:strokeAlpha="0.85" />
+        android:strokeLineJoin="round" />
+    <!-- Top-Right Bracket -->
     <path
-        android:pathData="M54,22 A32,32 0 1,0 86,54"
+        android:pathData="M73,26 L82,26 L82,35"
+        android:strokeColor="#D0BCFF"
+        android:strokeWidth="2.5"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round" />
+    <!-- Bottom-Left Bracket -->
+    <path
+        android:pathData="M26,73 L26,82 L35,82"
         android:strokeColor="#4ADE80"
-        android:strokeWidth="1.5"
+        android:strokeWidth="2.5"
         android:strokeLineCap="round"
-        android:strokeAlpha="0.9" />
-
-    <!-- Crosshair HUD Ticks -->
+        android:strokeLineJoin="round" />
+    <!-- Bottom-Right Bracket -->
     <path
-        android:pathData="M54,10 v6 M54,92 v6 M10,54 h6 M92,54 h6"
-        android:strokeColor="#D0BCFF"
-        android:strokeWidth="2"
-        android:strokeLineCap="round"/>
-
-    <!-- Game Controller Main Body -->
-    <path
-        android:pathData="M34,44 C27,44 21,49 21,58 C21,69 26,78 33,78 C37,78 40,74 45,70 L63,70 C68,74 71,78 75,78 C82,78 87,69 87,58 C87,49 81,44 74,44 Z"
-        android:fillColor="#1F1A24"
-        android:strokeColor="#D0BCFF"
-        android:strokeWidth="3"
+        android:pathData="M82,73 L82,82 L73,82"
+        android:strokeColor="#4ADE80"
+        android:strokeWidth="2.5"
+        android:strokeLineCap="round"
         android:strokeLineJoin="round" />
 
-    <!-- Left Analog / D-Pad Star -->
+    <!-- Game Controller Shadow / Outer Silhouette -->
     <path
-        android:pathData="M33,53 v10 M28,58 h10"
-        android:strokeColor="#4ADE80"
+        android:pathData="M37,42 C30,42 24,47 24,56 C24,67 29,76 36,76 C40,76 43,72 48,68 L60,68 C65,72 68,76 72,76 C79,76 84,67 84,56 C84,47 78,42 71,42 Z"
+        android:fillColor="#171226"
+        android:strokeColor="#D0BCFF"
+        android:strokeWidth="3.2"
+        android:strokeLineJoin="round" />
+
+    <!-- Top Trigger Bumpers (L1 / R1) -->
+    <path
+        android:pathData="M33,40 C34,36 40,35 45,36"
+        android:strokeColor="#A78BFA"
+        android:strokeWidth="3"
+        android:strokeLineCap="round" />
+    <path
+        android:pathData="M63,36 C68,35 74,36 75,40"
+        android:strokeColor="#A78BFA"
         android:strokeWidth="3"
         android:strokeLineCap="round" />
 
-    <!-- Right Action Buttons Diamond (Vibrant Purple Glows) -->
+    <!-- Grip Inner Accent Contours -->
     <path
-        android:pathData="M75,51 a1.8,1.8 0 1,0 0.1,0 Z"
-        android:fillColor="#D0BCFF" />
+        android:pathData="M27,58 C27,66 31,72 35,72"
+        android:strokeColor="#2E244A"
+        android:strokeWidth="2"
+        android:strokeLineCap="round" />
     <path
-        android:pathData="M70,56 a1.8,1.8 0 1,0 0.1,0 Z"
-        android:fillColor="#D0BCFF" />
-    <path
-        android:pathData="M80,56 a1.8,1.8 0 1,0 0.1,0 Z"
-        android:fillColor="#D0BCFF" />
-    <path
-        android:pathData="M75,61 a1.8,1.8 0 1,0 0.1,0 Z"
-        android:fillColor="#D0BCFF" />
+        android:pathData="M81,58 C81,66 77,72 73,72"
+        android:strokeColor="#2E244A"
+        android:strokeWidth="2"
+        android:strokeLineCap="round" />
 
-    <!-- Center Speed Lightning Core -->
+    <!-- Left D-Pad (Plus Sign) -->
     <path
-        android:pathData="M56,49 L48,58 L53,58 L50,67 L60,56 L55,56 Z"
+        android:pathData="M35,49 L39,49 L39,53 L43,53 L43,57 L39,57 L39,61 L35,61 L35,57 L31,57 L31,53 L35,53 Z"
         android:fillColor="#4ADE80" />
+
+    <!-- Right Diamond Action Buttons (Glow Gems) -->
+    <!-- Top button (Y - Yellow/Amber) -->
+    <path
+        android:pathData="M73,48 a2.5,2.5 0 1,0 0.1,0 Z"
+        android:fillColor="#FBBF24" />
+    <!-- Left button (X - Cyan) -->
+    <path
+        android:pathData="M68,54 a2.5,2.5 0 1,0 0.1,0 Z"
+        android:fillColor="#38BDF8" />
+    <!-- Right button (B - Red) -->
+    <path
+        android:pathData="M78,54 a2.5,2.5 0 1,0 0.1,0 Z"
+        android:fillColor="#F87171" />
+    <!-- Bottom button (A - Green) -->
+    <path
+        android:pathData="M73,60 a2.5,2.5 0 1,0 0.1,0 Z"
+        android:fillColor="#4ADE80" />
+
+    <!-- Center PlayVitals Heartbeat ECG Pulse Wave & Lightning Bolt -->
+    <!-- Pulse Line across Controller -->
+    <path
+        android:pathData="M46,55 L49,55 L52,47 L55,62 L58,52 L60,55 L62,55"
+        android:strokeColor="#00E676"
+        android:strokeWidth="2.8"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round" />
+
+    <!-- Central Glowing Core Crest Accent -->
+    <path
+        android:pathData="M54,42 L57,48 L51,48 Z"
+        android:fillColor="#D0BCFF" />
 </vector>
 

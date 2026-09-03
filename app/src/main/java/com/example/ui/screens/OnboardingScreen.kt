@@ -61,7 +61,7 @@ fun OnboardingScreen(
                 titleRes = R.string.onboarding_title_2,
                 descRes = R.string.onboarding_desc_2,
                 icon = Icons.Default.Bolt,
-                accentColor = AccentPurple
+                accentColor = AccentLavender
             ),
             OnboardingSlideData(
                 titleRes = R.string.onboarding_title_3,

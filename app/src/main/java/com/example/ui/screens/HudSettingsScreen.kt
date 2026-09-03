@@ -83,7 +83,7 @@ fun HudSettingsScreen(
                 }
                 Spacer(modifier = Modifier.width(8.dp))
                 Text(
-                    text = "GAME HUD SETTINGS",
+                    text = stringResource(R.string.nav_hud_settings),
                     color = TextPrimary,
                     fontSize = 14.sp,
                     fontWeight = FontWeight.Bold,

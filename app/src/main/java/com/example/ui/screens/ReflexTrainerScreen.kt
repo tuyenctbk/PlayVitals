@@ -376,7 +376,7 @@ private fun TargetBlitzDrillContent(
             verticalAlignment = Alignment.CenterVertically
         ) {
             Text(
-                text = "TARGETS REMAINING: $remaining/12",
+                text = stringResource(R.string.targets_remaining_fmt, remaining),
                 color = TextPrimary,
                 fontSize = 11.sp,
                 fontWeight = FontWeight.Bold,
@@ -465,7 +465,7 @@ private fun TargetBlitzDrillContent(
                     )
                     Spacer(modifier = Modifier.height(4.dp))
                     Text(
-                        text = "Avg ${finalScore / 12} ms per target",
+                        text = stringResource(R.string.avg_target_time_fmt, finalScore / 12),
                         color = TextSecondary,
                         fontSize = 12.sp
                     )

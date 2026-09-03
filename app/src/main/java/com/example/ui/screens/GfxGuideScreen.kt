@@ -73,7 +73,7 @@ fun GfxGuideScreen(
                 }
                 Spacer(modifier = Modifier.width(8.dp))
                 Text(
-                    text = "GFX GUIDE",
+                    text = stringResource(R.string.nav_gfx_guide),
                     color = TextPrimary,
                     fontSize = 14.sp,
                     fontWeight = FontWeight.Bold,

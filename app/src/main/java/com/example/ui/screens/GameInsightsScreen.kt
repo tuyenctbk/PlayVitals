@@ -77,7 +77,7 @@ fun GameInsightsScreen(
                 }
                 Spacer(modifier = Modifier.width(8.dp))
                 Text(
-                    text = "GAME INSIGHTS",
+                    text = stringResource(R.string.game_insights),
                     color = TextPrimary,
                     fontSize = 14.sp,
                     fontWeight = FontWeight.Bold,

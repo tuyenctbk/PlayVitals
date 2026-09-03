@@ -49,7 +49,6 @@ class MainActivity : ComponentActivity() {
                         modifier = Modifier
                             .fillMaxSize()
                             .padding(innerPadding)
-                            .systemBarsPadding()
                     ) {
                         PlayVitalsAppContent(viewModel)
                     }

@@ -11,7 +11,7 @@
     <string name="nav_reflex_trainer">REFLEX TRAINER</string>
     <string name="nav_manage_games">MANAGE GAMES</string>
     <string name="nav_onboarding">ONBOARDING</string>
-    <string name="no_ads_tagline">NO ADS • 100% FREE • PRO ENGINE</string>
+    <string name="no_ads_tagline">REAL-TIME TELEMETRY • PRO ENGINE</string>
 
     <!-- Dashboard & Telemetry -->
     <string name="free_ram">Free RAM</string>
@@ -88,6 +88,8 @@
     <string name="placeholder_search_installed">Search installed games and apps...</string>
     <string name="analyzing_hardware">ANALYZING HARDWARE...</string>
     <string name="drill_complete">DRILL COMPLETE!</string>
+    <string name="targets_remaining_fmt">TARGETS REMAINING: %1$d/12</string>
+    <string name="avg_target_time_fmt">Avg %1$d ms per target</string>
     <string name="manual_room_sync">MANUAL ROOM DB BACKUP &amp; RESTORE</string>
     <string name="live_hud_preview">LIVE HUD PREVIEW</string>
     <string name="reflex_speed_lab">REFLEX SPEED LAB</string>
@@ -157,6 +159,8 @@
     <string name="manage_games_title">MANAGE GAMES</string>
     <string name="scanning_installed">Scanning PackageManager for installed games...</string>
     <string name="pm_apps_notice">Apps that declare themselves as games are picked up automatically via PackageManager; anything else can be added by hand.</string>
+    <string name="auto_detected_game">Auto-detected Game</string>
+    <string name="installed_app">Installed App</string>
 
     <!-- Game Detail -->
     <string name="game_detail_title">GAME DETAIL</string>
