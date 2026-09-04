@@ -219,15 +219,15 @@ fun GameDetailScreen(
                                 horizontalArrangement = Arrangement.spacedBy(8.dp)
                             ) {
                                 HistoryStatCard(stringResource(R.string.played_label), displayPlayed, Modifier.weight(1f))
-                                HistoryStatCard(stringResource(R.string.sessions_label), "${game.sessionCount.coerceAtLeast(gameSessions.size)}", Modifier.weight(1f))
-                                HistoryStatCard(stringResource(R.string.min_ram_label), if (game.minRamRecorded > 0) "${game.minRamRecorded}%" else "46%", Modifier.weight(1f))
+                                HistoryStatCard(stringResource(R.string.sessions_label), "${gameSessions.size}", Modifier.weight(1f))
+                                HistoryStatCard(stringResource(R.string.min_ram_label), if (game.minRamRecorded > 0) "${game.minRamRecorded}%" else "--", Modifier.weight(1f))
                             }
                             Row(
                                 modifier = Modifier.fillMaxWidth(),
                                 horizontalArrangement = Arrangement.spacedBy(8.dp)
                             ) {
-                                HistoryStatCard(stringResource(R.string.peak_temp_label), if (game.peakTempRecorded > 0f) String.format("%.0f°C", game.peakTempRecorded) else "25°C", Modifier.weight(1f))
-                                HistoryStatCard(stringResource(R.string.latency_label), if (game.avgLatencyRecorded > 0) "${game.avgLatencyRecorded}ms" else "367ms", Modifier.weight(1f))
+                                HistoryStatCard(stringResource(R.string.peak_temp_label), if (game.peakTempRecorded > 0f) String.format("%.0f°C", game.peakTempRecorded) else "--", Modifier.weight(1f))
+                                HistoryStatCard(stringResource(R.string.latency_label), if (game.avgLatencyRecorded > 0) "${game.avgLatencyRecorded}ms" else "--", Modifier.weight(1f))
                                 HistoryStatCard(stringResource(R.string.refresh_label), "${game.screenRefreshRate}Hz", Modifier.weight(1f))
                             }
                         }
@@ -417,52 +417,33 @@ fun GameDetailScreen(
 
                         Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
                             if (gameSessions.isEmpty()) {
-                                SessionRowItem(
-                                    duration = "1m",
-                                    timeAgo = "2 minutes ago",
-                                    statsSummary = "RAM 46% • 25°C • 401 ms",
-                                    onClick = {
-                                        val dummySession = GameSession(
-                                            packageName = game.packageName,
-                                            gameTitle = game.displayName,
-                                            startTime = System.currentTimeMillis() - 120000L,
-                                            durationMillis = 60000L,
-                                            avgLatencyMs = 401,
-                                            pingJitterMs = 12,
-                                            minFreeRamPercent = 46,
-                                            peakBatteryTempC = 25.0f,
-                                            overallScore = 67,
-                                            pingScore = 0,
-                                            memoryScore = 100,
-                                            tempScore = 100,
-                                            summaryText = "Free memory stayed comfortable. Battery temperature stayed normal."
+                                Box(
+                                    modifier = Modifier
+                                        .fillMaxWidth()
+                                        .clip(RoundedCornerShape(8.dp))
+                                        .background(DarkSurfaceElevated)
+                                        .border(1.dp, DarkBorder, RoundedCornerShape(8.dp))
+                                        .padding(14.dp),
+                                    contentAlignment = Alignment.Center
+                                ) {
+                                    Column(
+                                        horizontalAlignment = Alignment.CenterHorizontally,
+                                        verticalArrangement = Arrangement.spacedBy(4.dp)
+                                    ) {
+                                        Text(
+                                            text = "No recorded sessions for ${game.displayName}",
+                                            color = TextSecondary,
+                                            fontSize = 11.sp,
+                                            fontWeight = FontWeight.SemiBold
                                         )
-                                        viewModel.openSessionReport(dummySession)
-                                    }
-                                )
-                                SessionRowItem(
-                                    duration = "2m",
-                                    timeAgo = "6 minutes ago",
-                                    statsSummary = "RAM 46% • 25°C • 340 ms",
-                                    onClick = {
-                                        val dummySession = GameSession(
-                                            packageName = game.packageName,
-                                            gameTitle = game.displayName,
-                                            startTime = System.currentTimeMillis() - 360000L,
-                                            durationMillis = 120000L,
-                                            avgLatencyMs = 340,
-                                            pingJitterMs = 8,
-                                            minFreeRamPercent = 46,
-                                            peakBatteryTempC = 25.0f,
-                                            overallScore = 72,
-                                            pingScore = 15,
-                                            memoryScore = 100,
-                                            tempScore = 100,
-                                            summaryText = "Free memory stayed comfortable. Battery temperature stayed normal."
+                                        Text(
+                                            text = "Launch game or start a test session with HUD enabled to track telemetry.",
+                                            color = TextTertiary,
+                                            fontSize = 10.sp,
+                                            textAlign = androidx.compose.ui.text.style.TextAlign.Center
                                         )
-                                        viewModel.openSessionReport(dummySession)
                                     }
-                                )
+                                }
                             } else {
                                 gameSessions.forEach { session ->
                                     val mins = (session.durationMillis / 60000L).coerceAtLeast(1)
@@ -763,15 +744,15 @@ fun GameDetailScreen(
                             horizontalArrangement = Arrangement.spacedBy(8.dp)
                         ) {
                             HistoryStatCard(stringResource(R.string.played_label), displayPlayed, Modifier.weight(1f))
-                            HistoryStatCard(stringResource(R.string.sessions_label), "${game.sessionCount.coerceAtLeast(gameSessions.size)}", Modifier.weight(1f))
-                            HistoryStatCard(stringResource(R.string.min_ram_label), if (game.minRamRecorded > 0) "${game.minRamRecorded}%" else "46%", Modifier.weight(1f))
+                            HistoryStatCard(stringResource(R.string.sessions_label), "${gameSessions.size}", Modifier.weight(1f))
+                            HistoryStatCard(stringResource(R.string.min_ram_label), if (game.minRamRecorded > 0) "${game.minRamRecorded}%" else "--", Modifier.weight(1f))
                         }
                         Row(
                             modifier = Modifier.fillMaxWidth(),
                             horizontalArrangement = Arrangement.spacedBy(8.dp)
                         ) {
-                            HistoryStatCard(stringResource(R.string.peak_temp_label), if (game.peakTempRecorded > 0f) String.format("%.0f°C", game.peakTempRecorded) else "25°C", Modifier.weight(1f))
-                            HistoryStatCard(stringResource(R.string.latency_label), if (game.avgLatencyRecorded > 0) "${game.avgLatencyRecorded}ms" else "367ms", Modifier.weight(1f))
+                            HistoryStatCard(stringResource(R.string.peak_temp_label), if (game.peakTempRecorded > 0f) String.format("%.0f°C", game.peakTempRecorded) else "--", Modifier.weight(1f))
+                            HistoryStatCard(stringResource(R.string.latency_label), if (game.avgLatencyRecorded > 0) "${game.avgLatencyRecorded}ms" else "--", Modifier.weight(1f))
                             HistoryStatCard(stringResource(R.string.refresh_label), "${game.screenRefreshRate}Hz", Modifier.weight(1f))
                         }
                     }
@@ -787,52 +768,33 @@ fun GameDetailScreen(
 
                     Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
                         if (gameSessions.isEmpty()) {
-                            SessionRowItem(
-                                duration = "1m",
-                                timeAgo = "2 minutes ago",
-                                statsSummary = "RAM 46% • 25°C • 401 ms",
-                                onClick = {
-                                    val dummySession = GameSession(
-                                        packageName = game.packageName,
-                                        gameTitle = game.displayName,
-                                        startTime = System.currentTimeMillis() - 120000L,
-                                        durationMillis = 60000L,
-                                        avgLatencyMs = 401,
-                                        pingJitterMs = 12,
-                                        minFreeRamPercent = 46,
-                                        peakBatteryTempC = 25.0f,
-                                        overallScore = 67,
-                                        pingScore = 0,
-                                        memoryScore = 100,
-                                        tempScore = 100,
-                                        summaryText = "Free memory stayed comfortable. Battery temperature stayed normal."
+                            Box(
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .clip(RoundedCornerShape(8.dp))
+                                    .background(DarkSurfaceElevated)
+                                    .border(1.dp, DarkBorder, RoundedCornerShape(8.dp))
+                                    .padding(14.dp),
+                                contentAlignment = Alignment.Center
+                            ) {
+                                Column(
+                                    horizontalAlignment = Alignment.CenterHorizontally,
+                                    verticalArrangement = Arrangement.spacedBy(4.dp)
+                                ) {
+                                    Text(
+                                        text = "No recorded sessions for ${game.displayName}",
+                                        color = TextSecondary,
+                                        fontSize = 11.sp,
+                                        fontWeight = FontWeight.SemiBold
                                     )
-                                    viewModel.openSessionReport(dummySession)
-                                }
-                            )
-                            SessionRowItem(
-                                duration = "2m",
-                                timeAgo = "6 minutes ago",
-                                statsSummary = "RAM 46% • 25°C • 340 ms",
-                                onClick = {
-                                    val dummySession = GameSession(
-                                        packageName = game.packageName,
-                                        gameTitle = game.displayName,
-                                        startTime = System.currentTimeMillis() - 360000L,
-                                        durationMillis = 120000L,
-                                        avgLatencyMs = 340,
-                                        pingJitterMs = 8,
-                                        minFreeRamPercent = 46,
-                                        peakBatteryTempC = 25.0f,
-                                        overallScore = 72,
-                                        pingScore = 15,
-                                        memoryScore = 100,
-                                        tempScore = 100,
-                                        summaryText = "Free memory stayed comfortable. Battery temperature stayed normal."
+                                    Text(
+                                        text = "Launch game or start a test session with HUD enabled to track telemetry.",
+                                        color = TextTertiary,
+                                        fontSize = 10.sp,
+                                        textAlign = androidx.compose.ui.text.style.TextAlign.Center
                                     )
-                                    viewModel.openSessionReport(dummySession)
                                 }
-                            )
+                            }
                         } else {
                             gameSessions.forEach { session ->
                                 val mins = (session.durationMillis / 60000L).coerceAtLeast(1)

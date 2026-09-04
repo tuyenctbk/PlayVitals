@@ -41,14 +41,6 @@ class PlayVitalsHelper(private val context: Context) {
             }
         }
 
-        // Add built-in starter games/profiles if library is small or in emulator
-        val presetGames = getPresetShowcaseGames()
-        for (preset in presetGames) {
-            if (detectedGames.none { it.packageName == preset.packageName }) {
-                detectedGames.add(preset)
-            }
-        }
-
         return detectedGames
     }
 
@@ -114,73 +106,6 @@ class PlayVitalsHelper(private val context: Context) {
             }
         } catch (e: Exception) {
             false
-        }
-    }
-
-    companion object {
-        fun getPresetShowcaseGames(): List<GameItem> {
-            return listOf(
-                GameItem(
-                    packageName = "com.aistudio.emberdrift",
-                    title = "Ember Drift",
-                    isAutoDetected = true,
-                    isInLauncher = true,
-                    iconPresetIndex = 0,
-                    tagsCsv = "Competitive,Offline",
-                    totalPlaytimeMillis = 240000L, // 4 mins
-                    sessionCount = 2,
-                    lastPlayedTimestamp = System.currentTimeMillis() - 120000L,
-                    minRamRecorded = 46,
-                    peakTempRecorded = 28.5f,
-                    avgLatencyRecorded = 367,
-                    screenRefreshRate = 60
-                ),
-                GameItem(
-                    packageName = "com.aistudio.cyberstrike",
-                    title = "Apex Strike",
-                    isAutoDetected = true,
-                    isInLauncher = true,
-                    iconPresetIndex = 1,
-                    tagsCsv = "Competitive,Multiplayer",
-                    totalPlaytimeMillis = 480000L, // 8 mins
-                    sessionCount = 3,
-                    lastPlayedTimestamp = System.currentTimeMillis() - 3600000L,
-                    minRamRecorded = 42,
-                    peakTempRecorded = 31.0f,
-                    avgLatencyRecorded = 48,
-                    screenRefreshRate = 90
-                ),
-                GameItem(
-                    packageName = "com.aistudio.neongrid",
-                    title = "Neon Odyssey",
-                    isAutoDetected = true,
-                    isInLauncher = true,
-                    iconPresetIndex = 2,
-                    tagsCsv = "Relaxing,Offline",
-                    totalPlaytimeMillis = 180000L,
-                    sessionCount = 1,
-                    lastPlayedTimestamp = System.currentTimeMillis() - 7200000L,
-                    minRamRecorded = 52,
-                    peakTempRecorded = 27.0f,
-                    avgLatencyRecorded = 32,
-                    screenRefreshRate = 60
-                ),
-                GameItem(
-                    packageName = "com.aistudio.quantumrush",
-                    title = "Quantum Rush",
-                    isAutoDetected = true,
-                    isInLauncher = true,
-                    iconPresetIndex = 3,
-                    tagsCsv = "Relaxing,Singleplayer",
-                    totalPlaytimeMillis = 0L,
-                    sessionCount = 0,
-                    lastPlayedTimestamp = 0L,
-                    minRamRecorded = 0,
-                    peakTempRecorded = 0f,
-                    avgLatencyRecorded = 0,
-                    screenRefreshRate = 60
-                )
-            )
         }
     }
 }

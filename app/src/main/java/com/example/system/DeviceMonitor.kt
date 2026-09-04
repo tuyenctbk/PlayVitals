@@ -24,19 +24,19 @@ import kotlin.math.roundToInt
 data class LiveDeviceStats(
     val freeRamBytes: Long = 0L,
     val totalRamBytes: Long = 0L,
-    val freeRamPercent: Int = 50,
+    val freeRamPercent: Int = 0,
     val batteryLevel: Int = 100,
-    val batteryTempC: Float = 25f,
+    val batteryTempC: Float = 0f,
     val isCharging: Boolean = false,
-    val networkLatencyMs: Int = 35,
+    val networkLatencyMs: Int = 0,
     val pingHistory: List<Int> = emptyList(),
     val screenRefreshRateHz: Int = 60,
     val storageUsedBytes: Long = 0L,
     val storageTotalBytes: Long = 0L,
-    val storageUsedPercent: Int = 25,
+    val storageUsedPercent: Int = 0,
     val cpuCores: Int = 8,
-    val screenResolution: String = "1080 x 2400",
-    val gpuRenderer: String = "Adreno / Mali Graphics"
+    val screenResolution: String = "",
+    val gpuRenderer: String = ""
 )
 
 class DeviceMonitor(private val context: Context) {
@@ -46,7 +46,7 @@ class DeviceMonitor(private val context: Context) {
     private val windowManager = context.getSystemService(Context.WINDOW_SERVICE) as WindowManager
 
     private var cachedBatteryLevel = 100
-    private var cachedBatteryTemp = 25.0f
+    private var cachedBatteryTemp = 0.0f
     private var cachedIsCharging = false
 
     private val pingHistoryBuffer = mutableListOf<Int>()
@@ -54,10 +54,6 @@ class DeviceMonitor(private val context: Context) {
 
     init {
         registerBatteryReceiver()
-        // Initialize ping history buffer with realistic initial points
-        for (i in 0 until maxPingBufferSize) {
-            pingHistoryBuffer.add(35 + (i % 15))
-        }
     }
 
     private fun registerBatteryReceiver() {
@@ -167,19 +163,19 @@ class DeviceMonitor(private val context: Context) {
         return pingHistoryBuffer.toList()
     }
 
-    fun readCurrentStats(lastLatency: Int = 35): LiveDeviceStats {
+    fun readCurrentStats(lastLatency: Int = 0): LiveDeviceStats {
         registerBatteryReceiver()
         val (freeMem, totalMem) = getMemoryInfo()
-        val freeMemPercent = if (totalMem > 0) ((freeMem.toDouble() / totalMem) * 100).roundToInt() else 50
+        val freeMemPercent = if (totalMem > 0) ((freeMem.toDouble() / totalMem) * 100).roundToInt() else 0
         val (usedStorage, totalStorage) = getStorageInfo()
-        val storagePercent = if (totalStorage > 0) ((usedStorage.toDouble() / totalStorage) * 100).roundToInt() else 40
+        val storagePercent = if (totalStorage > 0) ((usedStorage.toDouble() / totalStorage) * 100).roundToInt() else 0
 
         return LiveDeviceStats(
             freeRamBytes = freeMem,
             totalRamBytes = totalMem,
             freeRamPercent = freeMemPercent,
             batteryLevel = cachedBatteryLevel,
-            batteryTempC = if (cachedBatteryTemp <= 0f) 28.5f else cachedBatteryTemp,
+            batteryTempC = cachedBatteryTemp,
             isCharging = cachedIsCharging,
             networkLatencyMs = lastLatency,
             pingHistory = getPingHistory(),
@@ -198,7 +194,7 @@ class DeviceMonitor(private val context: Context) {
             OptimizationResult(
                 isManagedByAndroid = true,
                 freedMemoryMb = 0,
-                message = "Memory is managed by Android on this version."
+                message = "Memory is managed dynamically by Android."
             )
         } else {
             val (beforeFree, _) = getMemoryInfo()
@@ -212,12 +208,12 @@ class DeviceMonitor(private val context: Context) {
                 }
             } catch (_: Exception) {}
             val (afterFree, _) = getMemoryInfo()
-            val freedBytes = (afterFree - beforeFree).coerceAtLeast(148L * 1024 * 1024)
+            val freedBytes = (afterFree - beforeFree).coerceAtLeast(0L)
             val freedMb = (freedBytes / (1024 * 1024)).toInt()
             OptimizationResult(
                 isManagedByAndroid = false,
                 freedMemoryMb = freedMb,
-                message = "$freedMb MB RAM released from background processes."
+                message = if (freedMb > 0) "$freedMb MB RAM released from background processes." else "Background process memory cache trimmed."
             )
         }
     }

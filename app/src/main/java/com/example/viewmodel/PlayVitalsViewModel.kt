@@ -331,8 +331,8 @@ class PlayVitalsViewModel(application: Application) : AndroidViewModel(applicati
         viewModelScope.launch(Dispatchers.IO) {
             _isScanningPackageManager.value = true
             try {
-                val detected = launcherHelper.scanInstalledGames()
-                _scannedGameCount.value = detected.size
+                val detected = launcherHelper.getAllInstalledLaunchableApps()
+                _scannedGameCount.value = detected.count { it.isAutoDetected }
                 repository.insertGames(detected)
             } catch (e: Exception) {
                 e.printStackTrace()

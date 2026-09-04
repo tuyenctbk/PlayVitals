@@ -31,12 +31,18 @@ fun LivePingWaveform(
     currentPingMs: Int,
     modifier: Modifier = Modifier
 ) {
-    val points = if (pingHistory.isEmpty()) listOf(35, 40, 38, 42, 35) else pingHistory
-    val minPing = points.minOrNull() ?: currentPingMs
-    val maxPingVal = points.maxOrNull() ?: currentPingMs
+    val points = if (pingHistory.isEmpty()) {
+        if (currentPingMs > 0) listOf(currentPingMs) else emptyList()
+    } else {
+        pingHistory
+    }
+
+    val minPing = if (points.isNotEmpty()) points.minOrNull() ?: currentPingMs else currentPingMs
+    val maxPingVal = if (points.isNotEmpty()) points.maxOrNull() ?: currentPingMs else currentPingMs
     val avgPing = if (points.isNotEmpty()) points.sum() / points.size else currentPingMs
 
     val (qualityLabel, qualityColor) = when {
+        currentPingMs <= 0 -> "CONNECTING..." to TextTertiary
         currentPingMs <= 40 -> "EXCELLENT" to StatusGreen
         currentPingMs <= 80 -> "GOOD" to AccentLavender
         currentPingMs <= 130 -> "MODERATE" to WarningOrange
@@ -93,7 +99,7 @@ fun LivePingWaveform(
                     }
                     Spacer(modifier = Modifier.width(8.dp))
                     Text(
-                        text = "$currentPingMs ms",
+                        text = if (currentPingMs > 0) "$currentPingMs ms" else "-- ms",
                         color = qualityColor,
                         fontSize = 15.sp,
                         fontWeight = FontWeight.Bold
@@ -109,81 +115,94 @@ fun LivePingWaveform(
                     .fillMaxWidth()
                     .height(86.dp)
             ) {
-                Canvas(modifier = Modifier.fillMaxSize()) {
-                    val width = size.width
-                    val height = size.height
-
-                    // Grid lines (horizontal)
-                    val gridSteps = 3
-                    for (i in 1..gridSteps) {
-                        val y = (height / (gridSteps + 1)) * i
-                        drawLine(
-                            color = Color(0x14FFFFFF),
-                            start = Offset(0f, y),
-                            end = Offset(width, y),
-                            strokeWidth = 1.dp.toPx()
+                if (points.isEmpty()) {
+                    Box(
+                        modifier = Modifier.fillMaxSize(),
+                        contentAlignment = Alignment.Center
+                    ) {
+                        Text(
+                            text = "Measuring network latency in real-time...",
+                            color = TextTertiary,
+                            fontSize = 11.sp
                         )
                     }
+                } else {
+                    Canvas(modifier = Modifier.fillMaxSize()) {
+                        val width = size.width
+                        val height = size.height
 
-                    val graphMin = 10f
-                    val graphMax = (maxPingVal.toFloat()).coerceAtLeast(100f)
-                    val range = (graphMax - graphMin).coerceAtLeast(1f)
-
-                    val stepX = width / (points.size - 1).coerceAtLeast(1)
-
-                    val linePath = Path()
-                    val fillPath = Path()
-
-                    points.forEachIndexed { index, ping ->
-                        val x = index * stepX
-                        val normalized = ((ping - graphMin) / range).coerceIn(0f, 1f)
-                        val y = height - (normalized * (height * 0.80f) + height * 0.10f)
-
-                        if (index == 0) {
-                            linePath.moveTo(x, y)
-                            fillPath.moveTo(x, height)
-                            fillPath.lineTo(x, y)
-                        } else {
-                            linePath.lineTo(x, y)
-                            fillPath.lineTo(x, y)
+                        // Grid lines (horizontal)
+                        val gridSteps = 3
+                        for (i in 1..gridSteps) {
+                            val y = (height / (gridSteps + 1)) * i
+                            drawLine(
+                                color = Color(0x14FFFFFF),
+                                start = Offset(0f, y),
+                                end = Offset(width, y),
+                                strokeWidth = 1.dp.toPx()
+                            )
                         }
-                    }
 
-                    fillPath.lineTo(width, height)
-                    fillPath.close()
+                        val graphMin = 10f
+                        val graphMax = (maxPingVal.toFloat()).coerceAtLeast(100f)
+                        val range = (graphMax - graphMin).coerceAtLeast(1f)
 
-                    // Draw Gradient Area Fill under wave
-                    drawPath(
-                        path = fillPath,
-                        brush = Brush.verticalGradient(
-                            colors = listOf(
-                                qualityColor.copy(alpha = 0.30f),
-                                qualityColor.copy(alpha = 0.05f),
-                                Color.Transparent
+                        val stepX = width / (points.size - 1).coerceAtLeast(1)
+
+                        val linePath = Path()
+                        val fillPath = Path()
+
+                        points.forEachIndexed { index, ping ->
+                            val x = if (points.size > 1) index * stepX else width / 2f
+                            val normalized = ((ping - graphMin) / range).coerceIn(0f, 1f)
+                            val y = height - (normalized * (height * 0.80f) + height * 0.10f)
+
+                            if (index == 0) {
+                                linePath.moveTo(x, y)
+                                fillPath.moveTo(x, height)
+                                fillPath.lineTo(x, y)
+                            } else {
+                                linePath.lineTo(x, y)
+                                fillPath.lineTo(x, y)
+                            }
+                        }
+
+                        if (points.size > 1) {
+                            fillPath.lineTo(width, height)
+                            fillPath.close()
+
+                            // Draw Gradient Area Fill under wave
+                            drawPath(
+                                path = fillPath,
+                                brush = Brush.verticalGradient(
+                                    colors = listOf(
+                                        qualityColor.copy(alpha = 0.30f),
+                                        qualityColor.copy(alpha = 0.05f),
+                                        Color.Transparent
+                                    )
+                                )
                             )
-                        )
-                    )
 
-                    // Draw Stroke Waveform
-                    drawPath(
-                        path = linePath,
-                        brush = Brush.horizontalGradient(
-                            colors = listOf(
-                                AccentLavender.copy(alpha = 0.7f),
-                                qualityColor
+                            // Draw Stroke Waveform
+                            drawPath(
+                                path = linePath,
+                                brush = Brush.horizontalGradient(
+                                    colors = listOf(
+                                        AccentLavender.copy(alpha = 0.7f),
+                                        qualityColor
+                                    )
+                                ),
+                                style = Stroke(
+                                    width = 2.5.dp.toPx(),
+                                    cap = StrokeCap.Round,
+                                    join = StrokeJoin.Round
+                                )
                             )
-                        ),
-                        style = Stroke(
-                            width = 2.5.dp.toPx(),
-                            cap = StrokeCap.Round,
-                            join = StrokeJoin.Round
-                        )
-                    )
+                        }
 
-                    // Current Point dot
-                    if (points.isNotEmpty()) {
+                        // Current Point dot
                         val lastIndex = points.size - 1
-                        val lastX = lastIndex * stepX
+                        val lastX = if (points.size > 1) lastIndex * stepX else width / 2f
                         val lastNormalized = ((points.last() - graphMin) / range).coerceIn(0f, 1f)
                         val lastY = height - (lastNormalized * (height * 0.80f) + height * 0.10f)
 
@@ -214,9 +233,9 @@ fun LivePingWaveform(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
-                TelemetryStatChip(label = "MIN", value = "$minPing ms", valueColor = StatusGreen)
-                TelemetryStatChip(label = "AVG", value = "$avgPing ms", valueColor = AccentLavender)
-                TelemetryStatChip(label = "MAX", value = "$maxPingVal ms", valueColor = if (maxPingVal > 120) WarningOrange else TextPrimary)
+                TelemetryStatChip(label = "MIN", value = if (minPing > 0) "$minPing ms" else "--", valueColor = StatusGreen)
+                TelemetryStatChip(label = "AVG", value = if (avgPing > 0) "$avgPing ms" else "--", valueColor = AccentLavender)
+                TelemetryStatChip(label = "MAX", value = if (maxPingVal > 0) "$maxPingVal ms" else "--", valueColor = if (maxPingVal > 120) WarningOrange else TextPrimary)
                 TelemetryStatChip(label = "LOSS", value = "0.0%", valueColor = StatusGreen)
             }
         }

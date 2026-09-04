@@ -424,7 +424,12 @@ fun DashboardScreen(
                                 coroutineScope.launch {
                                     delay(600)
                                     isBoosting = false
-                                    boostFeedback = "Memory Optimized • +${(150..350).random()} MB Freed"
+                                    val optResult = gameModeState.lastOptimizationResult
+                                    boostFeedback = if (optResult != null && optResult.freedMemoryMb > 0) {
+                                        "Memory Optimized • +${optResult.freedMemoryMb} MB Freed"
+                                    } else {
+                                        "Memory Trimmed • Ready for Gaming"
+                                    }
                                     delay(3000)
                                     boostFeedback = null
                                 }
@@ -662,29 +667,38 @@ fun DashboardScreen(
                     .padding(24.dp),
                 contentAlignment = Alignment.Center
             ) {
-                Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                Column(
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    verticalArrangement = Arrangement.spacedBy(8.dp)
+                ) {
                     Icon(
                         imageVector = Icons.Default.SportsEsports,
                         contentDescription = null,
                         tint = TextTertiary,
-                        modifier = Modifier.size(32.dp)
+                        modifier = Modifier.size(36.dp)
                     )
-                    Spacer(modifier = Modifier.height(8.dp))
                     Text(
-                        text = if (selectedFilterTag == "FAVORITES") stringResource(R.string.no_favorites_yet) else "No games match tag '$selectedFilterTag'.",
+                        text = if (launcherGames.isEmpty()) "No games on your launcher shelf yet." else if (selectedFilterTag == "FAVORITES") stringResource(R.string.no_favorites_yet) else "No games match tag '$selectedFilterTag'.",
                         color = TextSecondary,
-                        fontSize = 12.sp
+                        fontSize = 12.sp,
+                        textAlign = androidx.compose.ui.text.style.TextAlign.Center
                     )
-                    Spacer(modifier = Modifier.height(6.dp))
-                    Text(
-                        text = stringResource(R.string.tap_manage_hint),
-                        color = AccentLavender,
-                        fontSize = 11.sp,
-                        fontWeight = FontWeight.Bold,
-                        modifier = Modifier
-                            .clickable { viewModel.navigateTo(ActiveScreen.MANAGE_GAMES) }
-                            .tvFocusHighlight(shape = RoundedCornerShape(4.dp))
-                    )
+                    Button(
+                        onClick = { viewModel.navigateTo(ActiveScreen.MANAGE_GAMES) },
+                        colors = ButtonDefaults.buttonColors(
+                            containerColor = HighDensityCardElevated,
+                            contentColor = AccentLavender
+                        ),
+                        shape = RoundedCornerShape(8.dp),
+                        border = ButtonDefaults.outlinedButtonBorder.copy(brush = androidx.compose.ui.graphics.SolidColor(AccentLavender.copy(alpha = 0.5f))),
+                        modifier = Modifier.tvFocusHighlight(shape = RoundedCornerShape(8.dp))
+                    ) {
+                        Text(
+                            text = if (launcherGames.isEmpty()) "ADD INSTALLED APPS" else stringResource(R.string.tap_manage_hint),
+                            fontSize = 11.sp,
+                            fontWeight = FontWeight.Bold
+                        )
+                    }
                 }
             }
         } else {
