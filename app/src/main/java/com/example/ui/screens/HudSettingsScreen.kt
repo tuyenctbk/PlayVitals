@@ -46,6 +46,8 @@ fun HudSettingsScreen(
 ) {
     val context = LocalContext.current
     val scrollState = rememberScrollState()
+    val liveStats by viewModel.liveStats.collectAsState()
+    val selectedGame by viewModel.selectedGame.collectAsState()
     var hasOverlayPermission by remember {
         mutableStateOf(Settings.canDrawOverlays(context))
     }
@@ -740,16 +742,18 @@ fun HudSettingsScreen(
                             .border(1.dp, DarkBorder, RoundedCornerShape(12.dp))
                             .padding(16.dp)
                     ) {
+                        val previewTitle = selectedGame?.displayName ?: "Game Preview"
+                        val freeRamGbFormatted = String.format("%.1f GB", liveStats.freeRamBytes / (1024.0 * 1024.0 * 1024.0))
                         HudOverlayContent(
-                            gameTitle = "Ember Drift",
-                            freeRamPercent = 49,
-                            freeRamGb = "1.9 GB",
-                            latencyMs = 45,
-                            refreshRateHz = 60,
-                            batteryTempC = 25f,
-                            elapsedSeconds = 24L,
-                            minRamPercent = 46,
-                            peakTempC = 25f,
+                            gameTitle = previewTitle,
+                            freeRamPercent = liveStats.freeRamPercent,
+                            freeRamGb = freeRamGbFormatted,
+                            latencyMs = liveStats.networkLatencyMs,
+                            refreshRateHz = liveStats.screenRefreshRateHz,
+                            batteryTempC = liveStats.batteryTempC,
+                            elapsedSeconds = 0L,
+                            minRamPercent = liveStats.freeRamPercent,
+                            peakTempC = liveStats.batteryTempC,
                             isMinimized = false,
                             hudSettings = hudSettings,
                             onToggleMinimize = {},
