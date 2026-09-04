@@ -13,6 +13,11 @@
 /captures
 .externalNativeBuild
 .cxx
+# Keystores
+*.jks
+*.keystore
+
+# Build and local configs
 local.properties
 .env
-debug.keystore
+.env.example
