@@ -42,7 +42,7 @@ fun LivePingWaveform(
     val avgPing = if (points.isNotEmpty()) points.sum() / points.size else currentPingMs
 
     val (qualityLabel, qualityColor) = when {
-        currentPingMs <= 0 -> "CONNECTING..." to TextTertiary
+        currentPingMs <= 0 -> "OFFLINE" to CriticalRed
         currentPingMs <= 40 -> "EXCELLENT" to StatusGreen
         currentPingMs <= 80 -> "GOOD" to AccentLavender
         currentPingMs <= 130 -> "MODERATE" to WarningOrange

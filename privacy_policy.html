@@ -151,7 +151,7 @@
         <p>To deliver its core features, the Application requires the following standard Android permissions:</p>
         <ul>
             <li><strong>SYSTEM_ALERT_WINDOW (Draw over other apps):</strong> Required to show the floating telemetry HUD overlay on top of active gameplay.</li>
-            <li><strong>QUERY_ALL_PACKAGES:</strong> Required to scan installed apps so you can add games to your launcher library.</li>
+            <li><strong>Package Visibility (&lt;queries&gt;):</strong> We declare targeted intent queries (CATEGORY_LAUNCHER and CATEGORY_GAME) solely to detect launchable games and add them to your local launcher library without requesting broad device package visibility.</li>
             <li><strong>INTERNET:</strong> Required to query network ping for latency measurements, use Gemini AI recommendations, and connect to secure Firebase cloud sync.</li>
             <li><strong>POST_NOTIFICATIONS:</strong> Required to display the background overlay service control notification and critical temperature alerts.</li>
         </ul>

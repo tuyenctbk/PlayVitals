@@ -153,7 +153,7 @@ fun GfxGuideScreen(
                                 .padding(14.dp)
                         ) {
                             Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
-                                SpecRow("Total RAM", String.format("%.1f GB", totalRamGb.coerceAtLeast(3.8)))
+                                SpecRow("Total RAM", if (totalRamGb > 0) String.format("%.1f GB", totalRamGb) else "--")
                                 SpecRow("CPU cores", "${liveStats.cpuCores}")
                                 SpecRow("Highest screen refresh rate", "${liveStats.screenRefreshRateHz} Hz")
                                 SpecRow("Screen resolution", liveStats.screenResolution)
@@ -311,7 +311,7 @@ fun GfxGuideScreen(
                             .padding(14.dp)
                     ) {
                         Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
-                            SpecRow("Total RAM", String.format("%.1f GB", totalRamGb.coerceAtLeast(3.8)))
+                            SpecRow("Total RAM", if (totalRamGb > 0) String.format("%.1f GB", totalRamGb) else "--")
                             SpecRow("CPU cores", "${liveStats.cpuCores}")
                             SpecRow("Highest screen refresh rate", "${liveStats.screenRefreshRateHz} Hz")
                             SpecRow("Screen resolution", liveStats.screenResolution)

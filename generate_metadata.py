@@ -39,7 +39,7 @@ An offline-first design ensures your personal gaming telemetry remains on your d
 
 Permissions Explained:
 • Display Over Other Apps (Overlay): To show the real-time HUD floating panels.
-• Query All Packages: To scan and list your installed games.
+• Package Visibility: To detect and launch installed games directly from your drawer.
 • Notifications: For background service control and temperature warning alerts."""
     },
     "es": {

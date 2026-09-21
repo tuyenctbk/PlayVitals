@@ -816,6 +816,7 @@ private fun DashboardActionCard(
             .background(HighDensityCard)
             .border(1.dp, HighDensityBorder, RoundedCornerShape(12.dp))
             .clickable { onClick() }
+            .tvFocusHighlight(shape = RoundedCornerShape(12.dp))
             .padding(vertical = 12.dp, horizontal = 8.dp)
     ) {
         Row(

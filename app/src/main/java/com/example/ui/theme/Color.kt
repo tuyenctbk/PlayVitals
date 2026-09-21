@@ -5,26 +5,26 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.ReadOnlyComposable
 import androidx.compose.ui.graphics.Color
 
-// Standard static color primitives (so they are always accessible)
-val ColorHighDensityCanvas = Color(0xFF1C1B1F)
-val ColorHighDensityCard = Color(0xFF2B2930)
-val ColorHighDensityCardElevated = Color(0xFF36343B)
-val ColorHighDensityBorder = Color(0xFF49454F)
+// Standard static color primitives (Obsidian Cyber aesthetic)
+val ColorHighDensityCanvas = Color(0xFF0A0B10)
+val ColorHighDensityCard = Color(0xFF141722)
+val ColorHighDensityCardElevated = Color(0xFF1D2232)
+val ColorHighDensityBorder = Color(0xFF2B3248)
 
 val AccentLavender = Color(0xFFD0BCFF)
-val AccentPurple = Color(0xFF381E72)
-val AccentPurpleDark = Color(0xFF21005D)
-val AccentPurpleLight = Color(0xFFEADDFF)
-val AccentPurpleContainer = Color(0xFFE8DEF8)
+val AccentPurple = Color(0xFF6366F1)
+val AccentPurpleDark = Color(0xFF1E1B4B)
+val AccentPurpleLight = Color(0xFFE0E7FF)
+val AccentPurpleContainer = Color(0xFF312E81)
 
-val StatusGreen = Color(0xFF4ADE80)
-val WarningOrange = Color(0xFFFB923C)
-val CriticalRed = Color(0xFFFF5252)
+val StatusGreen = Color(0xFF00E676)
+val WarningOrange = Color(0xFFFF9100)
+val CriticalRed = Color(0xFFFF1744)
 
 val NeonGreen = StatusGreen
-val NeonGreenDim = Color(0xFF22C55E)
-val NeonGreenSubtle = Color(0x264ADE80)
-val NeonCyan = AccentLavender
+val NeonGreenDim = Color(0xFF00C853)
+val NeonGreenSubtle = Color(0x2600E676)
+val NeonCyan = Color(0xFF00F0FF)
 val WarningAmber = WarningOrange
 
 // Gradient stops

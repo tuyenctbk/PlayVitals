@@ -1,23 +1,94 @@
+# =============================================================================
+# ANDROID / GRADLE BUILD ARTIFACTS
+# =============================================================================
 *.iml
-.gradle
-.kotlin
-/local.properties
-/.idea/caches
-/.idea/libraries
+.gradle/
+.kotlin/
+/build/
+**/build/
+/captures/
+.externalNativeBuild/
+.cxx/
+*.ap_
+*.dex
+*.apk
+*.aab
+
+# Generated source & resource files
+**/generated/
+**/*.generated.*
+
+# =============================================================================
+# ANDROID STUDIO / IntelliJ IDEA
+# =============================================================================
+/.idea/caches/
+/.idea/libraries/
 /.idea/modules.xml
 /.idea/workspace.xml
 /.idea/navEditor.xml
 /.idea/assetWizardSettings.xml
-.DS_Store
-/build
-/captures
-.externalNativeBuild
-.cxx
-# Keystores
+/.idea/.gitignore
+/.idea/deploymentTargetSelector.xml
+.idea/*.iws
+*.iws
+
+# =============================================================================
+# LOCAL CONFIGURATION — NEVER COMMIT
+# =============================================================================
+local.properties
+
+# =============================================================================
+# SECRETS & CREDENTIALS — NEVER COMMIT
+# =============================================================================
+.env
 *.jks
 *.keystore
+google-services.json
+GoogleService-Info.plist
+# Keep .env.example (documents required keys without exposing values)
+!.env.example
 
-# Build and local configs
-local.properties
-.env
-.env.example
+# =============================================================================
+# macOS SYSTEM FILES
+# =============================================================================
+.DS_Store
+**/.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# =============================================================================
+# WINDOWS SYSTEM FILES
+# =============================================================================
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# =============================================================================
+# LINUX SYSTEM FILES
+# =============================================================================
+*~
+
+# =============================================================================
+# PROJECT-SPECIFIC GENERATED / SCRATCH FILES
+# =============================================================================
+# Roborazzi screenshot test references (generated, not source of truth)
+**/roborazzi/*.png
+
+# Room database schema exports (optional — remove if you want to track migrations)
+app/schemas/
+
+# Lint reports
+lint-results*.html
+lint-results*.xml
+
+# AGP / Gradle build scan reports
+build/reports/
+
+# Proguard mapping (keep in secure storage, not git)
+app/build/outputs/mapping/
+
+# AGY / Antigravity IDE scratch files at repo root
+task.artifact.md
+walkthrough.artifact.md

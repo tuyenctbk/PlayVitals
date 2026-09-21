@@ -348,8 +348,8 @@ private fun ReactionSpeedDrillContent(
                     )
                 }
                 Text(
-                    text = if (bestScore != null) "$bestScore ms" else "322 ms",
-                    color = StatusGreen,
+                    text = if (bestScore != null) "$bestScore ms" else "--",
+                    color = if (bestScore != null) StatusGreen else TextSecondary,
                     fontSize = 14.sp,
                     fontWeight = FontWeight.Bold
                 )

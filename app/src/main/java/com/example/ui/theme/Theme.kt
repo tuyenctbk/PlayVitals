@@ -4,6 +4,7 @@ import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.spring
 import androidx.compose.animation.core.Spring
 import androidx.compose.foundation.border
+import androidx.compose.foundation.focusable
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
@@ -37,13 +38,13 @@ private val HighDensityDarkColorScheme = darkColorScheme(
     tertiaryContainer = Color(0xFF5F4100),
     onTertiaryContainer = Color(0xFFFFDE9F),
     background = ColorHighDensityCanvas,
-    onBackground = Color(0xFFE6E1E5),
+    onBackground = Color(0xFFF1F5F9),
     surface = ColorHighDensityCard,
-    onSurface = Color(0xFFE6E1E5),
+    onSurface = Color(0xFFF1F5F9),
     surfaceVariant = ColorHighDensityCardElevated,
-    onSurfaceVariant = Color(0xFF938F99),
+    onSurfaceVariant = Color(0xFF94A3B8),
     outline = ColorHighDensityBorder,
-    outlineVariant = Color(0xFF49454F),
+    outlineVariant = Color(0xFF334155),
     error = CriticalRed,
     onError = Color.White
 )
@@ -100,8 +101,8 @@ fun MyApplicationTheme(
  */
 fun Modifier.tvFocusHighlight(
     shape: Shape = RoundedCornerShape(12.dp),
-    focusedBorderColor: Color = Color(0xFFD0BCFF),
-    focusedScale: Float = 1.05f
+    focusedBorderColor: Color = Color(0xFF00F0FF),
+    focusedScale: Float = 1.04f
 ): Modifier = composed {
     var isFocused by remember { mutableStateOf(false) }
     val scale by animateFloatAsState(
@@ -111,13 +112,14 @@ fun Modifier.tvFocusHighlight(
     )
 
     this
+        .focusable()
         .onFocusChanged { isFocused = it.isFocused }
         .graphicsLayer {
             scaleX = scale
             scaleY = scale
         }
         .border(
-            width = if (isFocused) 2.dp else 0.dp,
+            width = if (isFocused) 2.5.dp else 0.dp,
             color = if (isFocused) focusedBorderColor else Color.Transparent,
             shape = shape
         )

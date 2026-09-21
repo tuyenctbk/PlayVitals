@@ -128,16 +128,29 @@ class DeviceMonitor(private val context: Context) {
         return "${Build.MANUFACTURER} ${Build.MODEL} (${Build.HARDWARE})"
     }
 
+    fun isNetworkAvailable(): Boolean {
+        return try {
+            val network = connectivityManager.activeNetwork ?: return false
+            val caps = connectivityManager.getNetworkCapabilities(network) ?: return false
+            caps.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET)
+        } catch (_: Exception) {
+            false
+        }
+    }
+
     suspend fun measureNetworkLatency(): Int = withContext(Dispatchers.IO) {
+        if (!isNetworkAvailable()) {
+            return@withContext 0
+        }
         // Ping public DNS servers (Cloudflare 1.1.1.1 or Google 8.8.8.8) on port 53
         val hosts = listOf("1.1.1.1", "8.8.8.8", "208.67.222.222")
         for (host in hosts) {
             val startTime = System.currentTimeMillis()
             try {
                 Socket().use { socket ->
-                    socket.connect(InetSocketAddress(host, 53), 1200)
+                    socket.connect(InetSocketAddress(host, 53), 1000)
                     val elapsed = (System.currentTimeMillis() - startTime).toInt()
-                    val latency = elapsed.coerceIn(12, 999)
+                    val latency = elapsed.coerceIn(10, 999)
                     recordPing(latency)
                     return@withContext latency
                 }
@@ -145,9 +158,7 @@ class DeviceMonitor(private val context: Context) {
                 // Try next host
             }
         }
-        val fallbackLatency = 45
-        recordPing(fallbackLatency)
-        fallbackLatency
+        0
     }
 
     @Synchronized

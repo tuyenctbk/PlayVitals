@@ -225,6 +225,10 @@ class HudOverlayService : Service() {
             y = savedY
         }
 
+        val metrics = resources.displayMetrics
+        val maxX = (metrics.widthPixels - 100).coerceAtLeast(300)
+        val maxY = (metrics.heightPixels - 100).coerceAtLeast(400)
+
         val owner = ServiceLifecycleOwner().apply { onCreate() }
         serviceLifecycleOwner = owner
 
@@ -249,8 +253,8 @@ class HudOverlayService : Service() {
                     onToggleMinimize = { _isMinimized.value = !_isMinimized.value },
                     onFinish = { finishAndRecordSession() },
                     onDrag = { dx, dy ->
-                        layoutParams.x = (layoutParams.x + dx.toInt()).coerceIn(0, 1000)
-                        layoutParams.y = (layoutParams.y + dy.toInt()).coerceIn(0, 2000)
+                        layoutParams.x = (layoutParams.x + dx.toInt()).coerceIn(0, maxX)
+                        layoutParams.y = (layoutParams.y + dy.toInt()).coerceIn(0, maxY)
                         windowManager?.updateViewLayout(this@apply, layoutParams)
 
                         // Save updated screen position to SharedPreferences persistently
@@ -295,7 +299,7 @@ class HudOverlayService : Service() {
                     }
 
                     _minRamPercent.value = minOf(_minRamPercent.value, stats.freeRamPercent)
-                    _peakTempC.value = maxOf(_peakTempC.value, stats.batteryTempC)
+                    _peakTempC.value = if (_peakTempC.value == 0f) stats.batteryTempC else maxOf(_peakTempC.value, stats.batteryTempC)
                 }
 
                 _elapsedSeconds.value = (System.currentTimeMillis() - sessionStartTime) / 1000
@@ -310,7 +314,7 @@ class HudOverlayService : Service() {
             val durationSafe = duration.coerceAtLeast(1000L)
             val avgLatency = _latencyMs.value
             val minRam = _minRamPercent.value
-            val peakTemp = _peakTempC.value
+            val peakTemp = if (_peakTempC.value > 0f) _peakTempC.value else if (_batteryTempC.value > 0f) _batteryTempC.value else 28f
 
             // Compute performance scores (0 - 100)
             val pingScore = (100 - (avgLatency - 20) * 0.4).roundToInt().coerceIn(10, 100)
